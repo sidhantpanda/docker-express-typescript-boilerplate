@@ -1,4 +1,19 @@
 {
+  "name": "express-typescript-boilerplate",
+  "version": "1.0.0",
+  "description": "A minimalist TypeScript-Express boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidhantpanda/express-typescript-boilerplate.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "express",
+    "nodejs",
+    "boilerplate",
+    "tslint"
+  ],
+  "author": "Sidhant Panda",
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
@@ -19,5 +34,10 @@
     "@types/express": "^4.16.1",
     "tslint": "^5.15.0",
     "typescript": "^3.4.3"
-  }
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sidhantpanda/express-typescript-boilerplate/issues"
+  },
+  "homepage": "https://github.com/sidhantpanda/express-typescript-boilerplate#readme"
 }
