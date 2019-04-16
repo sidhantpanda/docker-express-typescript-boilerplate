@@ -1,5 +1,11 @@
 # Express TypeScript Boilerplate
 
+## Using `curl`
+```
+$ bash <(curl -s https://raw.githubusercontent.com/sidhantpanda/public/master/scripts/generate-express-ts-app.sh)
+```
+
+## Manual Method
 #### 1. Clone this repo
 ```
 $ git clone git@github.com:sidhantpanda/express-typescript-boilerplate.git your-app-name
