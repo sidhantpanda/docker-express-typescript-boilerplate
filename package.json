@@ -16,7 +16,6 @@
   "author": "Sidhant Panda",
   "main": "dist/index.js",
   "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
     "dev": "nodemon",
@@ -32,7 +31,6 @@
   "devDependencies": {
     "@types/compression": "0.0.36",
     "@types/express": "4.17.0",
-    "tslint": "5.18.0",
     "typescript": "3.5.3"
   },
   "license": "MIT",
