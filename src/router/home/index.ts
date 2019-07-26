@@ -1,14 +1,10 @@
 import { Router } from 'express';
-import Controller from './controller';
+import * as controller from './controller';
 
-const homeContoller = new Controller();
 
-class Home {
-    public router: Router = Router();
-    constructor() {
-        this.router.get('/', homeContoller.homeRoute);
-    }
-}
+const router = Router();
 
-const homeHandler = new Home();
-export default homeHandler.router;
+router.get('/', controller.homeRoute);
+
+export default router;
+
