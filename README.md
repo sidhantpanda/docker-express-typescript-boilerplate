@@ -16,20 +16,27 @@ $ cd your-app-name
 ```
 $ npm i
 ```
-OR
-```
-$ yarn install
-```
-
 
 #### 3. Start dev server
 ```
 $ npm run dev
 ```
 
-#### 4. Build for production
+#### 4A. Run with docker-compose
 ```
-$ npm run build
+$ docker-compose up
+```
+
+#### 4B. Run with docker
+```
+$ docker build -t api-server .
+$ docker run -t -i -p 3000:3000 api-server
+```
+
+
+#### 4C. Build and run
+```
+$ npm run build && npm run start
 ```
 
 ---
@@ -50,6 +57,8 @@ $ npm run build
 +-- .eslintrc.js
 +-- .gitignore
 +-- .prettierrc.js
++-- docker-compose.yml
++-- Dockerfile
 +-- nodemon.json
 +-- package-lock.json
 +-- package.json
