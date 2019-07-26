@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  api-server:
+    build:
+      context: .
+    container_name: api-server
+    image: api-server
+    restart: unless-stopped
+    networks:
+      - app-network
+    ports:
+      - '3000:3000'
+
+networks:
+  app-network:
+    driver: bridge
