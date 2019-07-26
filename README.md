@@ -47,10 +47,13 @@ $ npm run build
 |   |   |   +-- index.ts
 |   +-- app.ts
 |   +-- server.ts
++-- .eslintrc.js
++-- .gitignore
++-- .prettierrc.js
 +-- nodemon.json
++-- package-lock.json
 +-- package.json
++-- README.md
 +-- tsconfig.json
-+-- tslint.json
-+-- yarn.lock
 
 ```
