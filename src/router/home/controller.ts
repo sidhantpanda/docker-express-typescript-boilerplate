@@ -1,7 +1,10 @@
 import { RequestHandler } from 'express';
+import handleErrorMiddleware from '../../middleware/handle-error-middleware';
 
-const homeRoute: RequestHandler = async (req, res) => {
+let homeRoute: RequestHandler = async (req, res) => {
     res.send('Home Route');
 };
+
+homeRoute = handleErrorMiddleware(homeRoute);
 
 export { homeRoute };

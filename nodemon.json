@@ -8,6 +8,6 @@
   "watch": [
     "src"
   ],
-  "exec": "npm start",
+  "exec": "ts-node src/server.ts",
   "ext": "ts"
 }
