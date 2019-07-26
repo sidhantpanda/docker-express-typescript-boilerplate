@@ -17,8 +17,8 @@
   "main": "dist/index.js",
   "scripts": {
     "eslint": "eslint src/server.ts",
+    "prebuild": "npm run eslint",
     "build": "tsc",
-    "prestart": "npm run build",
     "dev": "nodemon",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
