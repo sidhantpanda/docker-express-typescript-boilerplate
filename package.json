@@ -11,7 +11,7 @@
     "express",
     "nodejs",
     "boilerplate",
-    "tslint"
+    "eslint"
   ],
   "author": "Sidhant Panda",
   "main": "dist/index.js",
