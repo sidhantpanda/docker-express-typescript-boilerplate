@@ -18,8 +18,9 @@
   "scripts": {
     "eslint": "eslint src/server.ts",
     "prebuild": "npm run eslint",
+    "postinstall": "chmod +x ./scripts/dev.sh",
     "build": "tsc",
-    "dev": "nodemon",
+    "dev": "./scripts/dev.sh",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
