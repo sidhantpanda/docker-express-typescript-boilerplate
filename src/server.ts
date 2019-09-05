@@ -1,7 +1,20 @@
 import app from './app';
+import MongoConnection from './mongo-connection';
 
-const server = app.listen(app.get('port'), (): void => {
-  console.log(`server started at http://localhost:${app.get('port')}`);
+const mongoConnection = new MongoConnection('mongodb://localhost:27018/relog');
+
+mongoConnection.connect(() => {
+  app.listen(app.get('port'), (): void => {
+    console.log(`Express server started at http://localhost:${app.get('port')}`);
+  });
 });
 
-export default server;
+// Close the Mongoose connection, when receiving SIGINT
+process.on('SIGINT', function () {
+  mongoConnection.close(err => {
+    if (err) {
+
+    }
+    process.exit(0);
+  });
+});
