@@ -10,10 +10,11 @@ mongoConnection.connect(() => {
 });
 
 // Close the Mongoose connection, when receiving SIGINT
-process.on('SIGINT', function () {
+process.on('SIGINT', () => {
+  console.log('\nGracefully shutting down');
   mongoConnection.close(err => {
     if (err) {
-
+      console.error(err);
     }
     process.exit(0);
   });
