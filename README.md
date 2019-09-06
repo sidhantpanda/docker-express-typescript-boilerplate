@@ -68,6 +68,8 @@ $ npm run build && npm run start
 ### Directory Structure
 
 ```
++-- scripts
+|   +-- dev.sh
 +-- src
 |   +-- middleware
 |   |   +-- handle-error-middleware.ts
@@ -96,5 +98,4 @@ $ npm run build && npm run start
 +-- package.json
 +-- README.md
 +-- tsconfig.json
-
 ```
