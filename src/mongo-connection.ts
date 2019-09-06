@@ -48,8 +48,8 @@ export default class MongoConnection {
 
   private onDisconnected = () => {
     if (!this.isConnectedBefore) {
+      console.log('Retrying MongoDB connection');
       setTimeout(() => {
-        console.log('Retrying MongoDB connection');
         this.connect();
       }, 2000);
     }

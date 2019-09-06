@@ -13,7 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', process.env.PORT || 3000);
 
-app.use('/dev', DevRouter);
+if (process.env.NODE_ENV === 'development') {
+  app.use('/dev', DevRouter);
+}
+
 app.use('/book', BookRouter);
 
 export default app;
