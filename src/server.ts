@@ -12,11 +12,16 @@ if (process.env.MONGO_URL == undefined) {
   process.stdin.emit('SIGINT');
 } else {
   mongoConnection.connect(() => {
+    console.log(`*************************************************************************`);
+    console.log(`*\t\t\t\t\t\t\t\t\t*`);
+    console.log(`*\t🛢️  MongoDB running at ${process.env.MONGO_URL}\t\t*`);
     app.listen(app.get('port'), (): void => {
-      console.log(`\n🌏 Express server started at http://localhost:${app.get('port')}`);
+      console.log(`*\t🌏 Express server started at http://localhost:${app.get('port')}\t\t*`);
       if (process.env.NODE_ENV === 'development') {
-        console.log(`⚙️  Swagger UI hosted at http://localhost:${app.get('port')}/dev/api-docs\n\n`);
+        console.log(`*\t⚙️  Swagger UI hosted at http://localhost:${app.get('port')}/dev/api-docs\t*`);
       }
+      console.log(`*\t\t\t\t\t\t\t\t\t*`);
+      console.log(`*************************************************************************\n\n`);
     });
   });
 }
