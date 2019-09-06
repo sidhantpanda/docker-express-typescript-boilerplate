@@ -2,9 +2,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import express from 'express';
 
-import HomeRouter from './router/home';
 import BookRouter from './router/book';
-import UserRouter from './router/user';
 
 const app = express();
 
