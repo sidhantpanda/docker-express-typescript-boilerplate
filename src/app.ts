@@ -14,8 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', process.env.PORT || 3000);
 
-app.use('/', HomeRouter);
 app.use('/book', BookRouter);
-app.use('/user', UserRouter);
 
 export default app;
