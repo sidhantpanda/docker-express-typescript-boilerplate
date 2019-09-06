@@ -1,0 +1,131 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API Service",
+    "version": "1.0.0",
+    "description": "API Service endpoints",
+    "contact": {
+      "email": "sidhant@panda.fyi",
+      "name": "Sidhant Panda"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "book",
+      "description": "Books APIs"
+    }
+  ],
+  "paths": {
+    "/book/add": {
+      "post": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Add a book to the database",
+        "operationId": "book-add",
+        "responses": {
+          "200": {
+            "description": "Book was added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftBookSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/book/search": {
+      "get": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Search books by name or author",
+        "operationId": "book-search",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "default": "hitchhiker"
+            },
+            "description": "String containing full name or partial name of the book"
+          },
+          {
+            "in": "query",
+            "name": "author",
+            "schema": {
+              "type": "string",
+              "default": "douglas"
+            },
+            "description": "String containing full name or partial name of the author"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "books": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookSchema"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DraftBookSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "The Hitchhiker's Guide to the Galaxy"
+          },
+          "author": {
+            "type": "string",
+            "example": "Douglas Adams"
+          }
+        }
+      },
+      "BookSchema": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DraftBookSchema"
+          }
+        ],
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "5d7224d3b40b1a1a046697dd"
+          }
+        }
+      }
+    }
+  }
+}
