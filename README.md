@@ -45,6 +45,10 @@ $ npm run build && npm run start
 
 ```
 +-- src
+|   +-- models
+|   |   +-- Book.ts
+|   +-- app.ts
+|   +-- server.ts
 |   +-- routes
 |   |   +-- book
 |   |   |   +-- controller
