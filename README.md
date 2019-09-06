@@ -46,20 +46,22 @@ $ npm run build && npm run start
 ```
 +-- src
 |   +-- routes
-|   |   +-- home
-|   |   |   +-- controller.ts
-|   |   |   +-- index.ts
-|   |   +-- user
-|   |   |   +-- controller.ts
+|   |   +-- book
+|   |   |   +-- controller
+|   |   |   |   +-- add.ts
+|   |   |   |   +-- search.ts
+|   |   |   |   +-- index.ts
 |   |   |   +-- index.ts
 |   +-- app.ts
 |   +-- server.ts
 +-- .eslintrc.js
 +-- .gitignore
 +-- .prettierrc.js
++-- docker-compose.dev.yml
 +-- docker-compose.yml
 +-- Dockerfile
 +-- nodemon.json
++-- openapi.json
 +-- package-lock.json
 +-- package.json
 +-- README.md
