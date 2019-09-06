@@ -45,6 +45,8 @@ $ npm run build && npm run start
 
 ```
 +-- src
+|   +-- middleware
+|   |   +-- handle-error-middleware.ts
 |   +-- models
 |   |   +-- Book.ts
 |   +-- app.ts
