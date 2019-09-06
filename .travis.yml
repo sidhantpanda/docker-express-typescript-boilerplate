@@ -1,4 +1,11 @@
 language: node_js
 node_js:
   - 10
-script: npm run build
+jobs:
+  include:
+    - stage: 'Lint check'
+      name: 'Lint check'
+      script: npm run eslint
+    - stage: 'Run typescript build'
+      name: 'Run typescript build'
+      script: npm run build

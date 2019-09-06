@@ -17,7 +17,6 @@
   "main": "dist/index.js",
   "scripts": {
     "eslint": "eslint src/server.ts",
-    "prebuild": "npm run eslint",
     "postinstall": "chmod +x ./scripts/dev.sh",
     "build": "tsc",
     "dev": "./scripts/dev.sh",
