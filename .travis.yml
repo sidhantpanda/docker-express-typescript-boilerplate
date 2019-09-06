@@ -6,6 +6,11 @@ jobs:
     - stage: 'Lint check'
       name: 'Lint check'
       script: npm run eslint
+    - stage: 'Test'
+      name: 'Unit Testing'
+      script: npm run test
     - stage: 'Run typescript build'
       name: 'Run typescript build'
       script: npm run build
+after_success:
+  - codecov
