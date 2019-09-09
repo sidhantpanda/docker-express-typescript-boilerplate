@@ -28,6 +28,17 @@
         ],
         "summary": "Add a book to the database",
         "operationId": "book-add",
+        "requestBody": {
+          "description": "New user signing up",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DraftBookSchema"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Book was added",
@@ -35,6 +46,37 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DraftBookSchema"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/book/all": {
+      "get": {
+        "tags": [
+          "book"
+        ],
+        "summary": "Get all books in database",
+        "operationId": "book-get-all",
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "books": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BookSchema"
+                      }
+                    }
+                  }
                 }
               }
             }
