@@ -23,14 +23,15 @@ A few things to note in the project:
 * [Middleware for easier async/await](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/src/middleware/handle-error-middleware.ts) - Catches errors from routes and throws them to express error handler to prevent app crash due to uncaught errors.
 * [OpenAPI 3.0 Spec](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/openapi.json) - A starter template to get started with API documentation using OpenAPI 3.0. This API spec is also available when running the development server at `http://localhost:3000/dev/api-docs`
 
+## Installation
 
-## Using `curl`
+### Using `curl`
 
 ```
 $ bash <(curl -s https://raw.githubusercontent.com/sidhantpanda/public/master/scripts/generate-express-ts-app.sh)
 ```
 
-## Manual Method
+### Manual Method
 
 #### 1. Clone this repo
 
@@ -45,7 +46,9 @@ $ cd your-app-name
 $ npm i
 ```
 
-#### 3. Start dev server
+## Development
+
+### Start dev server
 Starting the dev server also starts MongoDB as a service in a docker container using the compose script at `docker-compose.dev.yml`.
 
 ```
@@ -56,20 +59,21 @@ Running the above commands results in
 * ⚙️OpenAPI Viewer at `http://localhost:3000/dev/api-docs`
 * 🛢️MongoDB running at `mongodb://localhost:27017`
 
-#### 4A. Run with docker-compose
+## Packaging and Deployment
+#### 1. Run with docker-compose
 
 ```
 $ docker-compose up
 ```
 
-#### 4B. Run with docker
+#### 2. Run with docker
 
 ```
 $ docker build -t api-server .
 $ docker run -t -i -p 3000:3000 api-server
 ```
 
-#### 4C. Build and run
+#### 3. Build and run
 
 ```
 $ npm run build && npm run start
