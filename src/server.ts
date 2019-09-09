@@ -12,7 +12,7 @@ if (process.env.MONGO_URL == undefined) {
   process.stdin.emit('SIGINT');
 } else {
   mongoConnection.connect(() => {
-    console.log(`*************************************************************************`);
+    console.log(`\n\n*************************************************************************`);
     console.log(`*\t\t\t\t\t\t\t\t\t*`);
     console.log(`*\t🛢️  MongoDB running at ${process.env.MONGO_URL}\t\t*`);
     app.listen(app.get('port'), (): void => {
