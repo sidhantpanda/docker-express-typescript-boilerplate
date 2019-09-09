@@ -19,6 +19,7 @@ This repo can be used as a starting point for backend development with Nodejs. I
 A few things to note in the project:
 * [Dockerfile](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/Dockerfile) - Dockerfile to generate docker builds.
 * [docker-compose](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/docker-compose.yml) - Docker compose script to start service in production mode.
+* [Containerized Mongo for development](#development) - Starts a local mongo container with data persistence across runs.
 * [Mongo Connection Helper](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/src/mongo-connection.ts) - A helper class to connect to MongoDB reliably.
 * [Middleware for easier async/await](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/src/middleware/handle-error-middleware.ts) - Catches errors from routes and throws them to express error handler to prevent app crash due to uncaught errors.
 * [OpenAPI 3.0 Spec](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/openapi.json) - A starter template to get started with API documentation using OpenAPI 3.0. This API spec is also available when running the development server at `http://localhost:3000/dev/api-docs`
