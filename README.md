@@ -114,6 +114,8 @@ To edit environment variables, create a file with name `.env` and copy the conte
 |   |   |   +-- index.ts
 |   +-- app.ts
 |   +-- server.ts
++-- .env
++-- .env.default
 +-- .eslintrc.js
 +-- .gitignore
 +-- .prettierrc.js

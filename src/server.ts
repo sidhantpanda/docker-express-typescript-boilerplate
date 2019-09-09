@@ -1,4 +1,8 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+const result = dotenv.config();
+if (result.error) {
+  dotenv.config({ path: '.env.default' });
+}
 
 import app from './app';
 import MongoConnection from './mongo-connection';
