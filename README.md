@@ -46,10 +46,12 @@ $ npm i
 ```
 
 #### 3. Start dev server
+Starting the dev server also starts MongoDB as a service in a docker container using the compose script at `docker-compose.dev.yml`.
 
 ```
 $ npm run dev
 ```
+
 
 #### 4A. Run with docker-compose
 
