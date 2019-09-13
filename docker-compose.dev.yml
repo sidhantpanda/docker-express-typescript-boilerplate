@@ -10,7 +10,7 @@ services:
     volumes:
       - ./data/dev/mongo:/data/db
     ports:
-      - "27018:27017"
+      - "27017:27017"
 
 networks:
   dev-network:

@@ -90,7 +90,7 @@ To edit environment variables, create a file with name `.env` and copy the conte
 |---|---|---|---|
 | NODE_ENV  | string  | `development` |API runtime environment. eg: `staging`  |
 |  PORT | number  | `3000` | Port to run the API server on |
-|  MONGO_URL | string  | `mongodb://localhost:27018/books` | URL for MongoDB |
+|  MONGO_URL | string  | `mongodb://localhost:27017/books` | URL for MongoDB |
 
 
 ### Directory Structure
