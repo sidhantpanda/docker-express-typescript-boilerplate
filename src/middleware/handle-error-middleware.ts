@@ -8,11 +8,12 @@ import { RequestHandler } from 'express';
  * @param handler Request handler to check for error
  */
 const handleErrorMiddleware = (handler: RequestHandler): RequestHandler => async (req, res, next) => {
-  try {
-    handler(req, res, next);
-  } catch (err) {
+  handler(req, res, next).catch((err: Error) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.error(err);
+    }
     next(err);
-  }
+  });
 };
 
 export default handleErrorMiddleware;
