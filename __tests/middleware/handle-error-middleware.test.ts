@@ -36,7 +36,7 @@ describe('Error Handling Middleware', () => {
     expect(res.send).toHaveBeenCalledTimes(1);
   });
 
-  test('Response 500 if route throws error', async () => {
+  test('Handover request to express error handler on error', async () => {
     const next = jest.fn();
     const err = new Error('test error');
     const sampleRoute = async (req?: any, res?: any, next?: any) => {
