@@ -57,9 +57,9 @@ Starting the dev server also starts MongoDB as a service in a docker container u
 $ npm run dev
 ```
 Running the above commands results in 
-* 🌏API Server running at `http://localhost:3000`
-* ⚙️OpenAPI Viewer at `http://localhost:3000/dev/api-docs`
-* 🛢️MongoDB running at `mongodb://localhost:27017`
+* 🌏**API Server** running at `http://localhost:3000`
+* ⚙️**Swagger UI** at `http://localhost:3000/dev/api-docs`
+* 🛢️**MongoDB** running at `mongodb://localhost:27017`
 
 ## Packaging and Deployment
 #### 1. Run with docker-compose
