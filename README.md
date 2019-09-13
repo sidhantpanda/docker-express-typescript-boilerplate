@@ -24,6 +24,9 @@ A few things to note in the project:
 * [Middleware for easier async/await](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/src/middleware/handle-error-middleware.ts) - Catches errors from routes and throws them to express error handler to prevent app crash due to uncaught errors.
 * [OpenAPI 3.0 Spec](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/openapi.json) - A starter template to get started with API documentation using OpenAPI 3.0. This API spec is also available when running the development server at `http://localhost:3000/dev/api-docs`
 * [.env file for configuration](#environment) - Change server config like app port, mongo url etc
+* **ESLINT + Prettier** - ESLINT is configured with Prettier for easy linting.
+* **Jest** - Using Jest for running test cases
+* **Travis CI** - Pre-configured to a sample Travis CI pipepline for linting, building and running the test suite.
 
 ## Installation
 
