@@ -8,7 +8,11 @@ import { RequestHandler } from 'express';
  * @param handler Request handler to check for error
  */
 const handleErrorMiddleware = (handler: RequestHandler): RequestHandler => async (req, res, next) => {
-    handler(req, res, next).catch(next);
+  try {
+    handler(req, res, next);
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default handleErrorMiddleware;
