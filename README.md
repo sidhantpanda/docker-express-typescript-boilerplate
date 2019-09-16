@@ -41,7 +41,7 @@ $ bash <(curl -s https://raw.githubusercontent.com/sidhantpanda/public/master/sc
 #### 1. Clone this repo
 
 ```
-$ git clone git@github.com:sidhantpanda/express-typescript-boilerplate.git your-app-name
+$ git clone git@github.com:sidhantpanda/docker-express-typescript-boilerplate.git your-app-name
 $ cd your-app-name
 ```
 
