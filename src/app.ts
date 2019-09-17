@@ -2,10 +2,8 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import path from 'path';
 import express, { Request, Response, NextFunction } from 'express';
-
-import BookRouter from './router/book';
-import DevRouter from './router/dev';
 import { ApplicationError } from './errors';
+import routes from './routes';
 
 const app = express();
 
@@ -17,11 +15,7 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
 
-if (process.env.NODE_ENV === 'development') {
-  app.use('/dev', DevRouter);
-}
-
-app.use('/book', BookRouter);
+app.use(routes);
 
 app.use((err: ApplicationError, req: Request, res: Response, next: NextFunction) => {
   if (res.headersSent) {
