@@ -102,20 +102,19 @@ To edit environment variables, create a file with name `.env` and copy the conte
 +-- scripts
 |   +-- dev.sh
 +-- src
+|   +-- controllers
+|   |   +-- book
+|   |   |   +-- add.ts
+|   |   |   +-- all.ts
+|   |   |   +-- index.ts
+|   |   |   +-- search.ts
 |   +-- middleware
 |   |   +-- handle-error-middleware.ts
 |   +-- models
 |   |   +-- Book.ts
 |   +-- app.ts
-|   +-- server.ts
-|   +-- routes
-|   |   +-- book
-|   |   |   +-- controller
-|   |   |   |   +-- add.ts
-|   |   |   |   +-- search.ts
-|   |   |   |   +-- index.ts
-|   |   |   +-- index.ts
-|   +-- app.ts
+|   +-- mongo-connection.ts
+|   +-- routes.ts
 |   +-- server.ts
 +-- .env
 +-- .env.default
