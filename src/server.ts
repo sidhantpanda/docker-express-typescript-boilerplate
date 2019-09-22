@@ -36,7 +36,7 @@ process.on('SIGINT', () => {
       logger.log({
         level: 'error',
         message: 'Error shutting closing mongo connection',
-        error: err
+        error: err,
       });
     }
     process.exit(0);
