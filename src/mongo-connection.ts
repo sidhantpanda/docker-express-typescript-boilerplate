@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import logger from './logger';
 
 /**
  * Mongoose Connection Helper
@@ -25,7 +26,7 @@ export default class MongoConnection {
    * @param onClosed `err` passed as first argument in callback if there was an error while disconnecting
    */
   public close(onClosed: (err: Error) => void) {
-    console.log('Closing the MongoDB conection');
+    logger.info('Closing the MongoDB conection');
     mongoose.connection.close(onClosed);
   }
 
@@ -52,14 +53,14 @@ export default class MongoConnection {
    * `onReconnected` callback for mongoose
    */
   private onReconnected = () => {
-    console.log('Reconnected to MongoDB');
+    logger.info('Reconnected to MongoDB');
   }
 
   /**
    * `onError` callback for mongoose
    */
   private onError = () => {
-    console.error(`Could not connect to MongoDB at ${this.mongoUrl}`);
+    logger.error(`Could not connect to MongoDB at ${this.mongoUrl}`);
   }
 
   /**
@@ -67,7 +68,7 @@ export default class MongoConnection {
   */
   private onDisconnected = () => {
     if (!this.isConnectedBefore) {
-      console.log('Retrying MongoDB connection');
+      logger.info('Retrying MongoDB connection');
       setTimeout(() => {
         this.connect();
       }, 2000);
