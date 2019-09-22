@@ -24,6 +24,7 @@ A few things to note in the project:
 * **[Middleware for easier async/await](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/src/middleware/handle-error-middleware.ts)** - Catches errors from routes and throws them to express error handler to prevent app crash due to uncaught errors.
 * **[OpenAPI 3.0 Spec](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/openapi.json)** - A starter template to get started with API documentation using OpenAPI 3.0. This API spec is also available when running the development server at `http://localhost:3000/dev/api-docs`
 * **[.env file for configuration](#environment)** - Change server config like app port, mongo url etc
+* **[Winston Logger](#logging)** - Uses winston as the logger for the application.
 * **ESLINT + Prettier** - ESLINT is configured with Prettier for easy linting.
 * **Jest** - Using Jest for running test cases
 * **Travis CI** - Pre-configured to a sample Travis CI pipepline for linting, building and running the test suite.
@@ -94,6 +95,13 @@ To edit environment variables, create a file with name `.env` and copy the conte
 | NODE_ENV  | string  | `development` |API runtime environment. eg: `staging`  |
 |  PORT | number  | `3000` | Port to run the API server on |
 |  MONGO_URL | string  | `mongodb://localhost:27017/books` | URL for MongoDB |
+
+## Logging
+The application uses [winston](https://github.com/winstonjs/winston) as the default logger. The configuration file is at `src/logger.ts`.
+* All logs are saved in `./logs` directory and at `/logs` in the docker container.
+* The `docker-compose` file has a volume attached to container to expose host directory to the container for writing logs.
+* Console messages are prettified
+* Each line in error log file is a stringified JSON.
 
 
 ### Directory Structure
