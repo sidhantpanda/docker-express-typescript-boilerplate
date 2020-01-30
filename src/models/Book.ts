@@ -1,4 +1,6 @@
-import { Document, Model, Schema, model } from 'mongoose';
+import {
+  Document, Model, Schema, model
+} from 'mongoose';
 
 export interface IBook extends Document {
   /** Name of the book */

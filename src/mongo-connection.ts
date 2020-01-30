@@ -7,7 +7,9 @@ import logger from './logger';
  */
 export default class MongoConnection {
   private mongoUrl: string;
+
   private onConnectedCallback: Function;
+
   private isConnectedBefore: boolean = false;
 
   /**
@@ -23,7 +25,8 @@ export default class MongoConnection {
 
   /**
    * Close connection to MongoDB
-   * @param onClosed `err` passed as first argument in callback if there was an error while disconnecting
+   * @param onClosed `err` passed as first argument in callback
+   * if there was an error while disconnecting
    */
   public close(onClosed: (err: Error) => void) {
     logger.info('Closing the MongoDB conection');

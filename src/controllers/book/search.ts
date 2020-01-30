@@ -17,9 +17,9 @@ const buildBookSeachQuery = (name: string, author: string) => {
   }
 
   return query;
-}
+};
 
-let get: RequestHandler = async (req, res) => {
+const get: RequestHandler = async (req, res) => {
   const { name, author } = req.query;
 
   const query = buildBookSeachQuery(name, author);
@@ -27,6 +27,4 @@ let get: RequestHandler = async (req, res) => {
   res.send({ books });
 };
 
-get = handleErrorMiddleware(get);
-
-export default get;
+export default handleErrorMiddleware(get);
