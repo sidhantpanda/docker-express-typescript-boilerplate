@@ -25,7 +25,7 @@ A few things to note in the project:
 * **[OpenAPI 3.0 Spec](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/openapi.json)** - A starter template to get started with API documentation using OpenAPI 3.0. This API spec is also available when running the development server at `http://localhost:3000/dev/api-docs`
 * **[.env file for configuration](#environment)** - Change server config like app port, mongo url etc
 * **[Winston Logger](#logging)** - Uses winston as the logger for the application.
-* **ESLINT + Prettier** - ESLINT is configured with Prettier for easy linting.
+* **ESLINT** - ESLINT is configured for linting.
 * **Jest** - Using Jest for running test cases
 * **Travis CI** - Pre-configured to a sample Travis CI pipepline for linting, building and running the test suite.
 
@@ -116,6 +116,8 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 |   |   |   +-- all.ts
 |   |   |   +-- index.ts
 |   |   |   +-- search.ts
+|   +-- errors
+|   |   +-- index.ts
 |   +-- middleware
 |   |   +-- handle-error-middleware.ts
 |   +-- models
@@ -126,12 +128,13 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 |   +-- server.ts
 +-- .env
 +-- .env.default
-+-- .eslintrc.js
++-- .eslintrc.json
 +-- .gitignore
-+-- .prettierrc.js
++-- .travis.yml
 +-- docker-compose.dev.yml
 +-- docker-compose.yml
 +-- Dockerfile
++-- jest.config.js
 +-- nodemon.json
 +-- openapi.json
 +-- package-lock.json
