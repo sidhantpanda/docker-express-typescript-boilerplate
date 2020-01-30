@@ -1,21 +1,51 @@
-import mongoose from 'mongoose';
+import mongoose, { ConnectionOptions } from 'mongoose';
 import logger from './logger';
 
+(<any>mongoose).Promise = global.Promise;
+
+/** Callback for establishing or re-stablishing mongo connection */
+interface IOnConnectedCallback {
+  (): void;
+}
+
 /**
- * Mongoose Connection Helper
- * Connects to mongodb reliably with retries
+ * A Mongoose Connection wrapper class to
+ * help with mongo connection issues.
+ *
+ * This library tries to auto-reconnect to
+ * MongoDB without crashing the server.
+ * @author Sidhant Panda
  */
 export default class MongoConnection {
-  private mongoUrl: string;
+  /** URL to access mongo */
+  private readonly mongoUrl: string;
 
-  private onConnectedCallback: Function;
-
-  private isConnectedBefore: boolean = false;
+  /** Callback when mongo connection is established or re-established */
+  private onConnectedCallback: IOnConnectedCallback;
 
   /**
-   * @param mongoUrl MongoDB connection url example: mongodb://localhost:27017/books
+   * Internal flag to check if connection established for
+   * first time or after a disconnection
+   */
+  private isConnectedBefore: boolean = false;
+
+  /** Mongo connection options to be passed Mongoose */
+  private readonly mongoConnectionOptions: ConnectionOptions = {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  };
+
+  /**
+   * Start mongo connection
+   * @param mongoUrl MongoDB URL
+   * @param onConnectedCallback callback to be called when mongo connection is successful
    */
   constructor(mongoUrl: string) {
+    if (process.env.NODE_ENV === 'development') {
+      mongoose.set('debug', true);
+    }
+
     this.mongoUrl = mongoUrl;
     mongoose.connection.on('error', this.onError);
     mongoose.connection.on('disconnected', this.onDisconnected);
@@ -23,58 +53,69 @@ export default class MongoConnection {
     mongoose.connection.on('reconnected', this.onReconnected);
   }
 
-  /**
-   * Close connection to MongoDB
-   * @param onClosed `err` passed as first argument in callback
-   * if there was an error while disconnecting
-   */
-  public close(onClosed: (err: Error) => void) {
-    logger.info('Closing the MongoDB conection');
+  /** Close mongo connection */
+  public close(onClosed: (err: any) => void) {
+    logger.log({
+      level: 'info',
+      message: 'Closing the MongoDB connection'
+    });
+    // noinspection JSIgnoredPromiseFromCall
     mongoose.connection.close(onClosed);
   }
 
-  /**
-   * Attempt to connect to Mongo
-   * @param onConnectedCallback Function to be called when connection is extablished
-   */
-  public connect(onConnectedCallback?: Function) {
-    if (onConnectedCallback) {
-      this.onConnectedCallback = onConnectedCallback;
-    }
-    mongoose.connect(this.mongoUrl, { useNewUrlParser: true }, () => { });
+  /** Start mongo connection */
+  public connect(onConnectedCallback: IOnConnectedCallback) {
+    this.onConnectedCallback = onConnectedCallback;
+    this.startConnection();
+  }
+
+  private startConnection = () => {
+    logger.log({
+      level: 'info',
+      message: `Connecting to MongoDB at ${this.mongoUrl}`
+    });
+    mongoose.connect(this.mongoUrl, this.mongoConnectionOptions).catch(() => { });
   }
 
   /**
-   * `onConnected` callback for mongoose
+   * Handler called when mongo connection is established
    */
   private onConnected = () => {
+    logger.log({
+      level: 'info',
+      message: `Connected to MongoDB at ${this.mongoUrl}`
+    });
     this.isConnectedBefore = true;
     this.onConnectedCallback();
-  }
+  };
 
-  /**
-   * `onReconnected` callback for mongoose
-   */
+  /** Handler called when mongo gets re-connected to the database */
   private onReconnected = () => {
-    logger.info('Reconnected to MongoDB');
-  }
+    logger.log({
+      level: 'info',
+      message: 'Reconnected to MongoDB'
+    });
+    this.onConnectedCallback();
+  };
 
-  /**
-   * `onError` callback for mongoose
-   */
+  /** Handler called for mongo connection errors */
   private onError = () => {
-    logger.error(`Could not connect to MongoDB at ${this.mongoUrl}`);
-  }
+    logger.log({
+      level: 'error',
+      message: `Could not connect to ${this.mongoUrl}`
+    });
+  };
 
-  /**
-  * `onDisconnected` callback for mongoose
-  */
+  /** Handler called when mongo connection is lost */
   private onDisconnected = () => {
     if (!this.isConnectedBefore) {
-      logger.info('Retrying MongoDB connection');
       setTimeout(() => {
-        this.connect();
+        this.startConnection();
       }, 2000);
+      logger.log({
+        level: 'info',
+        message: 'Retrying mongo connection'
+      });
     }
-  }
+  };
 }
