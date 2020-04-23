@@ -50,10 +50,23 @@
       "error",
       "never"
     ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
     "semi": "error",
     "no-extra-semi": 0,
     "import/no-unresolved": "off",
     "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.spec.ts"
+        ]
+      }
+    ],
     "no-unused-vars": "off",
     "dot-notation": "off",
     "class-methods-use-this": "off",

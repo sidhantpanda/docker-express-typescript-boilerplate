@@ -23,5 +23,5 @@ describe('ApplicationError test suite', () => {
     const status = 400;
     const error = new ApplicationError(message, status);
     expect(error.status).toBe(status);
-  })
+  });
 });

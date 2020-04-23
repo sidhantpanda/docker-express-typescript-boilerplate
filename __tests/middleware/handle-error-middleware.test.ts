@@ -9,8 +9,8 @@ describe('Error Handling Middleware', () => {
     next = jest.fn();
     request = new Request('/users?sort=desc', {
       headers: {
-        Accept: 'text/html',
-      },
+        Accept: 'text/html'
+      }
     });
   });
 
@@ -25,8 +25,8 @@ describe('Error Handling Middleware', () => {
     };
 
     expect(next).toHaveBeenCalledTimes(0);
-    const sampleRoute = async (req?: any, res?: any, next?: any) => {
-      res.send();
+    const sampleRoute = async (req?: any, response?: any) => {
+      response.send();
     };
 
     const wrappedRoute = handleErrorMiddleware(sampleRoute);
@@ -37,9 +37,8 @@ describe('Error Handling Middleware', () => {
   });
 
   test('Handover request to express error handler on error', async () => {
-    const next = jest.fn();
     const err = new Error('test error');
-    const sampleRoute = async (req?: any, res?: any, next?: any) => {
+    const sampleRoute = async (req?: any, res?: any, nextHandler?: any) => {
       throw err;
     };
 

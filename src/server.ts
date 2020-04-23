@@ -32,7 +32,7 @@ if (process.env.MONGO_URL == null) {
 // Close the Mongoose connection, when receiving SIGINT
 process.on('SIGINT', () => {
   logger.info('Gracefully shutting down');
-  mongoConnection.close((err) => {
+  mongoConnection.close(err => {
     if (err) {
       logger.log({
         level: 'error',
