@@ -20,9 +20,9 @@ const buildBookSeachQuery = (name: string, author: string) => {
 };
 
 const get: RequestHandler = async (req, res) => {
-  const { name, author } = req.query;
+  const { name = undefined, author = undefined } = req.query;
 
-  const query = buildBookSeachQuery(name, author);
+  const query = buildBookSeachQuery((name as string), (author as string));
   const books = await Book.find(query);
   res.send({ books });
 };
