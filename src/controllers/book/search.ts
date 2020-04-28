@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import handleErrorMiddleware from '../../middleware/handle-error-middleware';
+import requestMiddleware from '../../middleware/request-middleware';
 import Book from '../../models/Book';
 
 /**
@@ -27,4 +27,4 @@ const get: RequestHandler = async (req, res) => {
   res.send({ books });
 };
 
-export default handleErrorMiddleware(get);
+export default requestMiddleware(get);

@@ -1,8 +1,10 @@
 import { Request } from 'jest-express/lib/request';
-import handleErrorMiddleware from '../../src/middleware/handle-error-middleware';
+import Joi from '@hapi/joi';
+import requestMiddleware from '../../src/middleware/request-middleware';
 
 let request: any;
 let next: any;
+let badRequest: any;
 
 describe('Error Handling Middleware', () => {
   beforeEach(() => {
@@ -11,6 +13,14 @@ describe('Error Handling Middleware', () => {
       headers: {
         Accept: 'text/html'
       }
+    });
+    badRequest = new Request('/users?sort=desc', {
+      headers: {
+        Accept: 'text/html'
+      }
+    });
+    badRequest.setBody({
+      stringValue: 14321
     });
   });
 
@@ -29,7 +39,7 @@ describe('Error Handling Middleware', () => {
       response.send();
     };
 
-    const wrappedRoute = handleErrorMiddleware(sampleRoute);
+    const wrappedRoute = requestMiddleware(sampleRoute);
     await wrappedRoute(request, res, next);
 
     expect(next).toHaveBeenCalledTimes(0);
@@ -42,10 +52,26 @@ describe('Error Handling Middleware', () => {
       throw err;
     };
 
-    const wrappedRoute = handleErrorMiddleware(sampleRoute);
+    const wrappedRoute = requestMiddleware(sampleRoute);
     await wrappedRoute(request, null, next);
 
     expect(next).toHaveBeenCalledTimes(1);
     expect(next).toHaveBeenCalledWith(err);
+  });
+
+  test('Handover request to express error handler on error', async () => {
+    const sampleRoute = async (req?: any, res?: any, nextHandler?: any) => {
+      res.send('Body is ok');
+    };
+
+    const bodySchema = Joi.object().keys({
+      stringValue: Joi.string()
+    });
+
+
+    const wrappedRoute = requestMiddleware(sampleRoute, { validation: { body: bodySchema } });
+    await wrappedRoute(badRequest, null, next);
+
+    expect(next).toHaveBeenCalledTimes(1);
   });
 });

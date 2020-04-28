@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import path from 'path';
 import express, { Request, Response, NextFunction } from 'express';
-import { ApplicationError } from './errors';
+import ApplicationError from './errors/application-error';
 import routes from './routes';
 
 const app = express();

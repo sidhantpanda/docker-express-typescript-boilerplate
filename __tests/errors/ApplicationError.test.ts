@@ -1,4 +1,4 @@
-import { ApplicationError } from '../../src/errors';
+import ApplicationError from '../../src/errors/application-error';
 
 describe('ApplicationError test suite', () => {
   test('sets default error message', () => {
