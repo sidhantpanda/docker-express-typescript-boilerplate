@@ -23,9 +23,7 @@
     "dev": "./scripts/dev.sh",
     "start": "node dist/server.js",
     "test": "jest",
-    "fix-lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts --fix",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "fix-lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts --fix"
   },
   "dependencies": {
     "@hapi/joi": "17.1.1",
@@ -36,8 +34,7 @@
     "mongoose": "5.9.18",
     "nodemon": "2.0.4",
     "swagger-ui-express": "4.1.4",
-    "winston": "3.2.1",
-    "snyk": "1.336.0"
+    "winston": "3.2.1"
   },
   "devDependencies": {
     "@types/compression": "1.7.0",
@@ -65,6 +62,5 @@
   "bugs": {
     "url": "https://github.com/sidhantpanda/docker-express-typescript-boilerplate/issues"
   },
-  "homepage": "https://github.com/sidhantpanda/docker-express-typescript-boilerplate#readme",
-  "snyk": true
+  "homepage": "https://github.com/sidhantpanda/docker-express-typescript-boilerplate#readme"
 }
