@@ -13,6 +13,8 @@
   <img src="https://snyk.io//test/github/sidhantpanda/docker-express-typescript-boilerplate/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io//test/github/sidhantpanda/docker-express-typescript-boilerplate?targetFile=package.json" style="max-width:100%;">
 </a>
 
+![Publish latest image](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/workflows/Publish%20latest%20image/badge.svg)
+
 # Express TypeScript Boilerplate
 This repo can be used as a starting point for backend development with Nodejs. It comes bundled with Docker and is CI/CD optimized. The development environment uses `docker-compose` to start dependent services like mongo.
 
@@ -80,10 +82,10 @@ Running the above commands results in
 * 🛢️**MongoDB** running at `mongodb://localhost:27017`
 
 ## Packaging and Deployment
-#### 1. Run with docker-compose
+#### 1. Build and run without Docker
 
 ```
-$ docker-compose up
+$ npm run build && npm run start
 ```
 
 #### 2. Run with docker
@@ -93,11 +95,12 @@ $ docker build -t api-server .
 $ docker run -t -i -p 3000:3000 api-server
 ```
 
-#### 3. Build and run
+#### 3. Run with docker-compose
 
 ```
-$ npm run build && npm run start
+$ docker-compose up
 ```
+
 
 ---
 
