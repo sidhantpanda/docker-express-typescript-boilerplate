@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:12
 
 # Add package file
 COPY package*.json ./

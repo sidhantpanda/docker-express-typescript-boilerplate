@@ -1,0 +1,32 @@
+name: Publish latest image
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+        env:
+          CI: true
+
+      - name: Publish image to Github Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: $GITHUB_ACTOR
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: sidhantpanda/docker-express-typescript-boilerplate/server
+          tags: latest
