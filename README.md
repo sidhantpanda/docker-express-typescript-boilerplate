@@ -17,6 +17,7 @@
 This repo can be used as a starting point for backend development with Nodejs. It comes bundled with Docker and is CI/CD optimized. The development environment uses `docker-compose` to start dependent services like mongo.
 
 A few things to note in the project:
+* **Github Actions Workflows** - Pre-configured Github Actions to run automated builds and publish image to Github Packages
 * **[Dockerfile](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/Dockerfile)** - Dockerfile to generate docker builds.
 * **[docker-compose](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/docker-compose.yml)** - Docker compose script to start service in production mode.
 * **[Containerized Mongo for development](#development)** - Starts a local mongo container with data persistence across runs.
@@ -28,7 +29,6 @@ A few things to note in the project:
 * **[Winston Logger](#logging)** - Uses winston as the logger for the application.
 * **ESLINT** - ESLINT is configured for linting.
 * **Jest** - Using Jest for running test cases
-* **Travis CI** - Pre-configured to a sample Travis CI pipepline for linting, building and running the test suite.
 
 ## Installation
 
