@@ -28,5 +28,5 @@ jobs:
           username: $GITHUB_ACTOR
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: sidhantpanda/docker-express-typescript-boilerplate/server
+          repository: sidhantpanda/docker-express-typescript-boilerplate/docker-express-typescript-boilerplate
           tags: latest
