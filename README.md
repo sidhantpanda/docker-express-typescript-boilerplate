@@ -53,6 +53,19 @@ $ cd your-app-name
 $ npm i
 ```
 
+#### 3. Update repository name in `.github/workflows/latest.yml`
+
+```
+      - name: Publish image to Github Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: $GITHUB_ACTOR
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: YOUR_GITHUB_USER/YOUR_REPO_NAME/YOUR_PACKAGE_NAME
+          tags: latest
+```
+
 ## Development
 
 ### Start dev server
