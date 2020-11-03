@@ -1,11 +1,3 @@
-  <!-- Dependency Status -->
-<a href="https://david-dm.org/sidhantpanda/docker-express-typescript-boilerplate">
-  <img src="https://david-dm.org/flexdinesh/react-redux-boilerplate.svg" alt="Dependency Status" />
-</a>
-<!-- devDependency Status -->
-<a href="https://david-dm.org/sidhantpanda/docker-express-typescript-boilerplate#info=devDependencies">
-  <img src="https://david-dm.org/flexdinesh/react-redux-boilerplate/dev-status.svg" alt="devDependency Status" />
-</a>
 <a href="https://travis-ci.org/sidhantpanda/docker-express-typescript-boilerplate">
   <img src="https://travis-ci.org/sidhantpanda/docker-express-typescript-boilerplate.svg?branch=master" alt="Build Status" />
 </a>
