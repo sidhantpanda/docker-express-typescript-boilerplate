@@ -13,10 +13,7 @@ import logger from './logger';
 const mongoConnection = new MongoConnection(process.env.MONGO_URL);
 
 if (process.env.MONGO_URL == null) {
-  logger.log({
-    level: 'error',
-    message: 'MONGO_URL not specified in environment'
-  });
+  logger.error('MONGO_URL not specified in environment');
   process.exit(1);
 } else {
   mongoConnection.connect(() => {
@@ -41,6 +38,8 @@ process.on('SIGINT', () => {
         message: 'Error shutting closing mongo connection',
         error: err
       });
+    } else {
+      logger.info('Mongo connection closed successfully');
     }
     process.exit(0);
   });
