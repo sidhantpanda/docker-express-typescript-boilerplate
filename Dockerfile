@@ -9,6 +9,8 @@ RUN npm i
 # Copy source
 COPY . .
 
+RUN rm .env
+
 # Build dist
 RUN npm run build
 
