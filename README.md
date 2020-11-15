@@ -24,7 +24,7 @@ A few things to note in the project:
 * **ESLINT** - ESLINT is configured for linting.
 * **Jest** - Using Jest for running test cases
 
-## Installation
+## I. Installation
 
 ### Using `curl`
 
@@ -47,20 +47,14 @@ $ cd your-app-name
 $ npm i
 ```
 
-#### 3. Update repository name in `.github/workflows/latest.yml`
+## II. Configuration
 
+#### Update Docker repository for actions
 ```
-      - name: Publish image to Github Packages
-        uses: docker/build-push-action@v1
-        with:
-          username: $GITHUB_ACTOR
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: YOUR_GITHUB_USER/YOUR_REPO_NAME/YOUR_PACKAGE_NAME
-          tags: latest
+$ npm run setup-actions
 ```
 
-## Development
+## III. Development
 
 ### Start dev server
 Starting the dev server also starts MongoDB as a service in a docker container using the compose script at `docker-compose.dev.yml`.
@@ -73,7 +67,10 @@ Running the above commands results in
 * ⚙️**Swagger UI** at `http://localhost:3000/dev/api-docs`
 * 🛢️**MongoDB** running at `mongodb://localhost:27017`
 
-## Packaging and Deployment
+## IV. Packaging and Deployment
+
+The mongo container is only only available in dev environment. When you build and deploy the docker image, be sure to provide the correct **[environment variables](#environment)**.
+
 #### 1. Build and run without Docker
 
 ```
@@ -84,7 +81,11 @@ $ npm run build && npm run start
 
 ```
 $ docker build -t api-server .
-$ docker run -t -i -p 3000:3000 api-server
+$ docker run -t -i \
+      --env NODE_ENV=production \
+      --env MONGO_URL=mongodb://host.docker.internal:27017/books \
+      -p 3000:3000 \
+      api-server
 ```
 
 #### 3. Run with docker-compose
@@ -126,11 +127,14 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 |   |   |   +-- index.ts
 |   |   |   +-- search.ts
 |   +-- errors
-|   |   +-- index.ts
+|   |   +-- application-error.ts
+|   |   +-- bad-request.ts
 |   +-- middleware
 |   |   +-- request-middleware.ts
 |   +-- models
 |   |   +-- Book.ts
+|   +-- public
+|   |   +-- index.html
 |   +-- app.ts
 |   +-- mongo-connection.ts
 |   +-- routes.ts
@@ -139,15 +143,16 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 +-- .env.default
 +-- .eslintrc.json
 +-- .gitignore
-+-- .travis.yml
 +-- docker-compose.dev.yml
 +-- docker-compose.yml
 +-- Dockerfile
 +-- jest.config.js
++-- LICENSE
 +-- nodemon.json
 +-- openapi.json
 +-- package-lock.json
 +-- package.json
 +-- README.md
++-- setup-github-actions.sh
 +-- tsconfig.json
 ```
