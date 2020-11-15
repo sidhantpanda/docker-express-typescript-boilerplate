@@ -7,9 +7,9 @@ COPY package*.json ./
 RUN npm i
 
 # Copy source
-COPY . .
-
-RUN rm .env
+COPY src ./src
+COPY tsconfig.json ./tsconfig.json
+COPY openapi.json ./openapi.json
 
 # Build dist
 RUN npm run build
