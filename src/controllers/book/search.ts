@@ -7,7 +7,7 @@ import Book from '../../models/Book';
  * @param name String containing the book name or part of the book's name
  * @param author String containing the author name or part of the author's name
  */
-const buildBookSeachQuery = (name: string, author: string) => {
+const buildBookSeachQuery = (name?: string, author?: string): { [key: string]: any } => {
   const query: any = {};
   if (name) {
     query.name = new RegExp(`.*${name}.*`, 'i');
@@ -19,12 +19,12 @@ const buildBookSeachQuery = (name: string, author: string) => {
   return query;
 };
 
-const get: RequestHandler = async (req, res) => {
-  const { name = undefined, author = undefined } = req.query;
+const search: RequestHandler = async (req, res) => {
+  const { name, author } = req.query;
 
   const query = buildBookSeachQuery((name as string), (author as string));
   const books = await Book.find(query);
   res.send({ books });
 };
 
-export default requestMiddleware(get);
+export default requestMiddleware(search);
