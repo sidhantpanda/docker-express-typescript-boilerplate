@@ -32,7 +32,7 @@
     "compression": "1.7.4",
     "dotenv": "8.2.0",
     "express": "4.17.1",
-    "mongoose": "5.10.11",
+    "mongoose": "5.11.7",
     "nodemon": "2.0.6",
     "swagger-ui-express": "4.1.4",
     "winston": "3.3.3"
