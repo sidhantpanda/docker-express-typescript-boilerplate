@@ -1,8 +1,11 @@
 import {
-  Document, Model, Schema, model
+  Model, Schema, model
 } from 'mongoose';
+import TimeStampPlugin, {
+  ITimeStampedDocument
+} from './plugins/timestamp-plugin';
 
-export interface IBook extends Document {
+export interface IBook extends ITimeStampedDocument {
   /** Name of the book */
   name: string;
   /** Name of the author */
@@ -12,9 +15,12 @@ export interface IBook extends Document {
 interface IBookModel extends Model<IBook> { }
 
 const schema = new Schema({
-  name: { type: String, required: true },
-  author: { type: String, required: true }
+  name: { type: String, index: true, required: true },
+  author: { type: String, index: true, required: true }
 });
+
+// Add timestamp plugin for createdAt and updatedAt in miliseconds from epoch
+schema.plugin(TimeStampPlugin);
 
 const Book: IBookModel = model<IBook, IBookModel>('Book', schema);
 
