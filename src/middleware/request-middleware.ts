@@ -25,7 +25,7 @@ interface HandlerOptions {
  * instead of crashing the app
  * @param handler Request handler to check for error
  */
-export const relogRequestHandler = (
+export const requestMiddleware = (
   handler: RequestHandler,
   options?: HandlerOptions,
 ): RequestHandler => async (req: Request, res: Response, next: NextFunction) => {
@@ -35,8 +35,9 @@ export const relogRequestHandler = (
       return next(new BadRequest(getMessageFromJoiError(error)));
     }
   }
-
-  return handler(req, res, next).catch((err: Error) => {
+  try {
+    return handler(req, res, next);
+  } catch (err) {
     if (process.env.NODE_ENV === 'development') {
       logger.log({
         level: 'error',
@@ -44,8 +45,8 @@ export const relogRequestHandler = (
         error: err
       });
     }
-    next(err);
-  });
+    return next(err);
+  };
 };
 
-export default relogRequestHandler;
+export default requestMiddleware;
