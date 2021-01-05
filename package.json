@@ -18,7 +18,7 @@
   "scripts": {
     "eslint": "eslint src/server.ts",
     "postinstall": "chmod +x ./scripts/dev.sh",
-    "setup-actions": "chmod +x setup-github-actions.sh; ./setup-github-actions.sh",
+    "setup-actions": "chmod +x ./scripts/setup-github-actions.sh; ./scripts/setup-github-actions.sh",
     "build": "tsc",
     "lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts",
     "dev": "./scripts/dev.sh",
