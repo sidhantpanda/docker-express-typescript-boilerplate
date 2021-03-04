@@ -14,7 +14,7 @@ export interface IBook extends ITimeStampedDocument {
 
 interface IBookModel extends Model<IBook> { }
 
-const schema = new Schema({
+const schema = new Schema<IBook>({
   name: { type: String, index: true, required: true },
   author: { type: String, index: true, required: true }
 });
