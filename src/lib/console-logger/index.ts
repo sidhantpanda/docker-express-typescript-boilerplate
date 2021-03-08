@@ -1,7 +1,7 @@
 /* eslint-disable  */
 import chalk from 'chalk';
 
-const getTimeStampString = () => new Date(Date.now()).toUTCString();
+const getTimeStampString = () => new Date(Date.now()).toISOString();
 
 export const STYLES = {
   ERROR: chalk.bold.red,
