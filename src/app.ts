@@ -4,8 +4,28 @@ import path from 'path';
 import express, { Request, Response, NextFunction } from 'express';
 import ApplicationError from './errors/application-error';
 import routes from './routes';
+import logger from './logger';
 
 const app = express();
+
+function logResponseTime(req: Request, res: Response, next: NextFunction) {
+  const startHrTime = process.hrtime();
+
+  res.on('finish', () => {
+    const elapsedHrTime = process.hrtime(startHrTime);
+    const elapsedTimeInMs = elapsedHrTime[0] * 1000 + elapsedHrTime[1] / 1e6;
+    const message = `${req.method} ${res.statusCode} ${req.path} ${elapsedTimeInMs}ms`;
+    logger.log({
+      level: 'info',
+      message,
+      consoleLoggerOptions: { label: 'API' }
+    });
+  });
+
+  next();
+}
+
+app.use(logResponseTime);
 
 app.use(compression());
 app.use(bodyParser.json());
