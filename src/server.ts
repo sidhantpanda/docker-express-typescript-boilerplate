@@ -10,15 +10,16 @@ import util from 'util';
 import app from './app';
 import MongoConnection from './mongo-connection';
 import logger from './logger';
-import ConsoleLogger, { STYLES } from './lib/console-logger';
-
-const consoleLogger = new ConsoleLogger();
 
 let debugCallback = null;
 if (process.env.NODE_ENV === 'development') {
   debugCallback = (collectionName: string, method: string, query: any, doc: string) => {
     const message = `${collectionName}.${method}(${util.inspect(query, { colors: true, depth: null })})`;
-    consoleLogger.log(STYLES.VERBOSE, 'MONGO', message);
+    logger.log({
+      level: 'silly',
+      message,
+      consoleLoggerOptions: { label: 'MONGO' }
+    });
   };
 }
 
@@ -29,12 +30,12 @@ if (process.env.MONGO_URL == null) {
   process.exit(1);
 } else {
   mongoConnection.connect(() => {
+    const port = app.get('port');
     app.listen(app.get('port'), (): void => {
-      logger.debug(`🌏 Express server started at http://localhost:${app.get('port')}`);
-      // console.log('\x1b[36m%s\x1b[0m', // eslint-disable-line
-      //   `🌏 Express server started at http://localhost:${app.get('port')}`);
+      logger.debug(`🌏 Express server started at http://localhost:${port}`);
       if (process.env.NODE_ENV === 'development') {
-        logger.debug(`⚙️  Swagger UI hosted at http://localhost:${app.get('port')}/dev/api-docs`);
+        // This route is only present in development mode
+        logger.debug(`⚙️  Swagger UI hosted at http://localhost:${port}/dev/api-docs`);
       }
     });
   });
