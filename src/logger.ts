@@ -3,7 +3,7 @@ import {
   format,
   transports
 } from 'winston';
-import consoleLogger from './lib/console-logger';
+import ConsoleLoggerTransport from './lib/console-logger/winston-transport';
 
 const logTransports = [
   new transports.File({
@@ -21,10 +21,11 @@ const logTransports = [
       }
     })
   }),
-  new transports.Console({
-    level: 'debug',
-    format: format.prettyPrint()
-  })
+  // new transports.Console({
+  //   level: 'debug',
+  //   format: format.prettyPrint()
+  // }),
+  new ConsoleLoggerTransport()
 ];
 
 const logger = createLogger({
@@ -32,7 +33,8 @@ const logger = createLogger({
     format.timestamp()
   ),
   transports: logTransports,
-  defaultMeta: { service: 'api' }
+  defaultMeta: { service: 'api' },
+  level: process.env.NODE_ENV === 'development' ? 'silly' : 'warn'
 });
 
 export default logger;
