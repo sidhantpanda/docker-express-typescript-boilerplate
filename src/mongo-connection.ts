@@ -41,9 +41,9 @@ export default class MongoConnection {
    * @param mongoUrl MongoDB URL
    * @param onConnectedCallback callback to be called when mongo connection is successful
    */
-  constructor(mongoUrl: string) {
-    if (process.env.NODE_ENV === 'development') {
-      mongoose.set('debug', true);
+  constructor(mongoUrl: string, debugCallback?: Function) {
+    if (debugCallback) {
+      mongoose.set('debug', debugCallback);
     }
 
     this.mongoUrl = mongoUrl;
