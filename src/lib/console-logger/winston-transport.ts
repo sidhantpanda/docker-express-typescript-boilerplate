@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import Transport from 'winston-transport';
+import util from 'util';
 import ConsoleLogger, { STYLES } from './index';
 
 const levelStyleMap: { [key: string]: chalk.Chalk } = {
@@ -15,13 +16,11 @@ export default class ConsoleLogTransport extends Transport {
   private logger = new ConsoleLogger();
 
   log(info: any, callback: { (): void }) {
-    const style = levelStyleMap[(info.level as string)];
+    const style = levelStyleMap[(info.level as string)] || STYLES.DEBUG;
     const label = info.consoleLoggerOptions?.label! || (info.level as string).toUpperCase();
-    let { message } = info;
-    if (info.error) {
-      message = `${message} ${info.error.stack || info.error.message}`;
-    }
-    this.logger.log(style, label, message);
+    const messages = [info.message];
+    if (info.error) { messages.push(info.error); }
+    this.logger.log(style, label, ...messages);
     callback();
   }
 }

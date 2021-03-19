@@ -22,35 +22,29 @@ export enum LABELS {
 }
 
 class ConsoleLogger {
-  public log = (style: chalk.Chalk, label: LABELS | string, message: string) => {
-    const finalMessage = `[${getTimeStampString()}] [${label}] ${message}`
-    console.log(style(finalMessage));
-  }
-
-  public error = (error: string | Error) => {
-    let finalMessage = '';
-    if (typeof error === 'string') {
-      // console.error(errorStyle(error));
-      finalMessage = `${error}`;
-    } else {
-      if (error.stack) {
-        finalMessage = `${error.stack}`;
-      } else {
-        finalMessage = `${error.message}`;
+  public log = (style: chalk.Chalk, label: LABELS | string, ...messages: any[]) => {
+    const finalMessage = `[${getTimeStampString()}] [${label}]`
+    console.log(style(finalMessage, ...(messages.map(item => {
+      if (item.stack) {
+        return '\n' + item.stack;
+      } else if (item.message) {
+        return item.message
       }
-    }
-    return this.log(STYLES.ERROR, LABELS.ERROR, finalMessage);
+      return item;
+    }))));
   }
 
-  public warn = (message: string) => this.log(STYLES.WARN, LABELS.WARN, message);
+  public error = (...messages: any[]) => this.log(STYLES.ERROR, LABELS.ERROR, ...messages);
 
-  public info = (message: string) => this.log(STYLES.INFO, LABELS.INFO, message);
+  public warn = (...messages: any[]) => this.log(STYLES.WARN, LABELS.WARN, ...messages);
 
-  public verbose = (message: string) => this.log(STYLES.VERBOSE, LABELS.VERBOSE, message);
+  public info = (...messages: any[]) => this.log(STYLES.INFO, LABELS.INFO, ...messages);
 
-  public debug = (message: string) => this.log(STYLES.DEBUG, LABELS.DEBUG, message);
+  public verbose = (...messages: any[]) => this.log(STYLES.VERBOSE, LABELS.VERBOSE, ...messages);
 
-  public silly = (message: string) => this.log(STYLES.SILLY, LABELS.SILLY, message);
+  public debug = (...messages: any[]) => this.log(STYLES.DEBUG, LABELS.DEBUG, ...messages);
+
+  public silly = (...messages: any[]) => this.log(STYLES.SILLY, LABELS.SILLY, ...messages);
 }
 
 export default ConsoleLogger;
