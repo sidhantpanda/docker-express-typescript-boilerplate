@@ -32,11 +32,14 @@ export const requestMiddleware = (
   if (options?.validation?.body) {
     const { error } = options?.validation?.body.validate(req.body);
     if (error != null) {
-      return next(new BadRequest(getMessageFromJoiError(error)));
+      next(new BadRequest(getMessageFromJoiError(error)));
+      return;
     }
   }
+
   try {
-    return handler(req, res, next);
+    await handler(req, res, null);
+    next();
   } catch (err) {
     if (process.env.NODE_ENV === 'development') {
       logger.log({
@@ -45,7 +48,7 @@ export const requestMiddleware = (
         error: err
       });
     }
-    return next(err);
+    next(err);
   };
 };
 

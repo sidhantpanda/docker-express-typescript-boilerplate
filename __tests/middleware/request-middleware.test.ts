@@ -42,7 +42,7 @@ describe('Error Handling Middleware', () => {
     const wrappedRoute = requestMiddleware(sampleRoute);
     await wrappedRoute(request, res, next);
 
-    expect(next).toHaveBeenCalledTimes(0);
+    expect(next).toHaveBeenCalledTimes(1);
     expect(res.send).toHaveBeenCalledTimes(1);
   });
 
@@ -55,7 +55,6 @@ describe('Error Handling Middleware', () => {
     const wrappedRoute = requestMiddleware(sampleRoute);
     await wrappedRoute(request, null, next);
 
-    expect(next).toHaveBeenCalledTimes(1);
     expect(next).toHaveBeenCalledWith(err);
   });
 
@@ -67,7 +66,6 @@ describe('Error Handling Middleware', () => {
     const bodySchema = Joi.object().keys({
       stringValue: Joi.string()
     });
-
 
     const wrappedRoute = requestMiddleware(sampleRoute, { validation: { body: bodySchema } });
     await wrappedRoute(badRequest, null, next);
