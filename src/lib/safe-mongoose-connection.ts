@@ -42,11 +42,15 @@ export default class SafeMongooseConnection {
    */
   private isConnectedBefore: boolean = false;
 
+  private shouldCloseConnection: boolean = false;
+
   /** Delay between retrying connecting to Mongo */
   private retryDelayMs: number = 2000;
 
   /** Mongo connection options to be passed Mongoose */
   private readonly mongoConnectionOptions: ConnectionOptions = defaultMongooseConnectionOptions;
+
+  private connectionTimeout: NodeJS.Timeout;
 
   /**
    * Start mongo connection
@@ -70,6 +74,10 @@ export default class SafeMongooseConnection {
 
   /** Close mongo connection */
   public close(onClosed: (err: any) => void = () => { }, force: boolean = false) {
+    if (this.connectionTimeout) {
+      clearTimeout(this.connectionTimeout);
+    }
+    this.shouldCloseConnection = true;
     mongoose.connection.close(force, onClosed);
   }
 
@@ -109,9 +117,10 @@ export default class SafeMongooseConnection {
 
   /** Handler called when mongo connection is lost */
   private onDisconnected = () => {
-    if (!this.isConnectedBefore) {
-      setTimeout(() => {
+    if (!this.isConnectedBefore && !this.shouldCloseConnection) {
+      this.connectionTimeout = setTimeout(() => {
         this.startConnection();
+        clearTimeout(this.connectionTimeout);
       }, this.retryDelayMs);
       if (this.options.onConnectionRetry) {
         this.options.onConnectionRetry(this.options.mongoUrl);

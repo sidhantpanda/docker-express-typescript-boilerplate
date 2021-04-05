@@ -34,7 +34,7 @@ const safeMongooseConnection = new SafeMongooseConnection({
     message: `Could not connect to MongoDB at ${mongoUrl}`,
     error
   }),
-  onConnectionRetry: mongoUrl => logger.info(`Reconnected to MongoDB at ${mongoUrl}`)
+  onConnectionRetry: mongoUrl => logger.info(`Retrying to MongoDB at ${mongoUrl}`)
 });
 
 const serve = () => app.listen(PORT, () => {
@@ -72,5 +72,5 @@ process.on('SIGINT', () => {
       logger.info('Mongo connection closed successfully');
     }
     process.exit(0);
-  });
+  }, true);
 });
