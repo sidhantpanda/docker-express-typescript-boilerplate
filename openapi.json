@@ -45,13 +45,30 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DraftBookSchema"
+                  "$ref": "#/components/schemas/BookSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestSchema"
                 }
               }
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerErrorSchema"
+                }
+              }
+            }
           }
         }
       }
@@ -82,7 +99,14 @@
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerErrorSchema"
+                }
+              }
+            }
           }
         }
       }
@@ -133,7 +157,14 @@
             }
           },
           "500": {
-            "description": "Server error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerErrorSchema"
+                }
+              }
+            }
           }
         }
       }
@@ -141,18 +172,50 @@
   },
   "components": {
     "schemas": {
+      "BadRequestSchema": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "PATH: [author] ;; MESSAGE: \"author\" is required"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
+      "ServerErrorSchema": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Internal server error"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
       "DraftBookSchema": {
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
+            "description": "Name of the book",
             "example": "The Hitchhiker's Guide to the Galaxy"
           },
           "author": {
             "type": "string",
+            "description": "Name of the author",
             "example": "Douglas Adams"
           }
-        }
+        },
+        "required": [
+          "name",
+          "author"
+        ]
       },
       "BookSchema": {
         "allOf": [
@@ -164,9 +227,25 @@
         "properties": {
           "_id": {
             "type": "string",
+            "description": "MongoDB id of the document",
             "example": "5d7224d3b40b1a1a046697dd"
+          },
+          "createdAt": {
+            "type": "number",
+            "description": "Created at timestamp in miliseconds",
+            "example": 1616158942428
+          },
+          "updatedAt": {
+            "type": "number",
+            "description": "Updated at timestamp in miliseconds",
+            "example": 1616158942428
           }
-        }
+        },
+        "required": [
+          "_id",
+          "createdAt",
+          "updatedAt"
+        ]
       }
     }
   }
