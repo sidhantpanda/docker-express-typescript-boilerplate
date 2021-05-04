@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-express-typescript-boilerplate
+  labels:
+    app: typescript-node-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: typescript-node-app
+  template:
+    metadata:
+      labels:
+        app: typescript-node-app
+    spec:
+      imagePullSecrets:
+        - name: github-cr-token
+      containers:
+        - name: typescript-node-app
+          image: docker.pkg.github.com/sidhantpanda/docker-express-typescript-boilerplate/docker-express-typescript-boilerplate:sha-731fc9e
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1000m"
