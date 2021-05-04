@@ -1,6 +1,5 @@
 import chalk from 'chalk';
 import Transport from 'winston-transport';
-import util from 'util';
 import ConsoleLogger, { STYLES } from './index';
 
 const levelStyleMap: { [key: string]: chalk.Chalk } = {
