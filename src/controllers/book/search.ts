@@ -1,4 +1,4 @@
-import { RequestHandler } from 'express';
+import { Request, RequestHandler } from 'express';
 import requestMiddleware from '../../middleware/request-middleware';
 import Book from '../../models/Book';
 
@@ -19,10 +19,15 @@ const buildBookSeachQuery = (name?: string, author?: string): { [key: string]: a
   return query;
 };
 
-const search: RequestHandler = async (req, res) => {
+interface SearchReqBody {
+  name?: string;
+  author?: string;
+}
+
+const search: RequestHandler = async (req: Request<{}, {}, {}, SearchReqBody>, res) => {
   const { name, author } = req.query;
 
-  const query = buildBookSeachQuery((name as string), (author as string));
+  const query = buildBookSeachQuery(name, author);
   const books = await Book.find(query);
   res.send({ books });
 };
