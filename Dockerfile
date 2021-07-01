@@ -14,15 +14,15 @@ COPY openapi.json ./openapi.json
 # Build dist
 RUN npm run build
 
-# Copy static files
-COPY src/public dist/src/public
-
 # Start production image build
 FROM gcr.io/distroless/nodejs:14
 
 # Copy node modules and build directory
 COPY --from=base ./node_modules ./node_modules
 COPY --from=base /dist /dist
+
+# Copy static files
+COPY src/public dist/src/public
 
 # Expose port 3000
 EXPOSE 3000
