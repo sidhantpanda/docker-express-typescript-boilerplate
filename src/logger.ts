@@ -30,7 +30,7 @@ const logger = createLogger({
   ),
   transports: logTransports,
   defaultMeta: { service: 'api' },
-  level: process.env.NODE_ENV === 'development' ? 'silly' : 'warn'
+  level: process.env.NODE_ENV === 'development' ? 'silly' : 'info'
 });
 
 export default logger;
