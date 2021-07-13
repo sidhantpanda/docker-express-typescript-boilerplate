@@ -13,6 +13,7 @@ const router = Router();
 // Book routes
 router.post('/book/add', BookController.add);
 router.get('/book/all', BookController.all);
+router.get('/book/:bookId', BookController.get);
 router.delete('/book/remove/:bookId', BookController.remove);
 router.get('/book/search', BookController.search);
 

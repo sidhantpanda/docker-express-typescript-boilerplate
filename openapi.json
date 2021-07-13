@@ -107,6 +107,50 @@
         }
       }
     },
+    "/book/{bookId}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of book to retrieve"
+          }
+        ],
+        "tags": ["book"],
+        "summary": "Retrieve a book by ID",
+        "operationId": "book-get",
+        "responses": {
+          "200": {
+            "description": "Book details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "book": {
+                      "$ref": "#/components/schemas/BookSchema"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/book/remove/{bookId}": {
       "delete": {
         "parameters": [
