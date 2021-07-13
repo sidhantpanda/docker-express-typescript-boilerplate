@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
   debugCallback = (collectionName: string, method: string, query: any, doc: string): void => {
     const message = `${collectionName}.${method}(${util.inspect(query, { colors: true, depth: null })})`;
     logger.log({
-      level: 'silly',
+      level: 'verbose',
       message,
       consoleLoggerOptions: { label: 'MONGO' }
     });

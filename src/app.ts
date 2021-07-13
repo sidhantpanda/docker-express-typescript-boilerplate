@@ -16,7 +16,7 @@ function logResponseTime(req: Request, res: Response, next: NextFunction) {
     const elapsedTimeInMs = elapsedHrTime[0] * 1000 + elapsedHrTime[1] / 1e6;
     const message = `${req.method} ${res.statusCode} ${elapsedTimeInMs}ms\t${req.path}`;
     logger.log({
-      level: 'info',
+      level: 'debug',
       message,
       consoleLoggerOptions: { label: 'API' }
     });

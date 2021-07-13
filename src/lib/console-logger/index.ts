@@ -9,7 +9,7 @@ export const STYLES = {
   INFO: chalk.hex('#c4c64f'),
   VERBOSE: chalk.hex('#6435c9'),
   DEBUG: chalk.hex('#2185d0'),
-  SILLY: chalk.hex('#21ba45')
+  SILLY: chalk.hex('#f011ce')
 }
 
 export enum LABELS {
