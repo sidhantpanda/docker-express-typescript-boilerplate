@@ -23,9 +23,7 @@
   "paths": {
     "/book/add": {
       "post": {
-        "tags": [
-          "book"
-        ],
+        "tags": ["book"],
         "summary": "Add a book to the database",
         "operationId": "book-add",
         "requestBody": {
@@ -75,9 +73,7 @@
     },
     "/book/all": {
       "get": {
-        "tags": [
-          "book"
-        ],
+        "tags": ["book"],
         "summary": "Get all books in database",
         "operationId": "book-get-all",
         "responses": {
@@ -111,11 +107,42 @@
         }
       }
     },
+    "/book/remove/{bookId}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of book to remove"
+          }
+        ],
+        "tags": ["book"],
+        "summary": "Remove a book by ID",
+        "operationId": "book-remove",
+        "responses": {
+          "204": {
+            "description": "Book removed"
+          },
+          "404": {
+            "description": "Book not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundErrorSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/book/search": {
       "get": {
-        "tags": [
-          "book"
-        ],
+        "tags": ["book"],
         "summary": "Search books by name or author",
         "operationId": "book-search",
         "parameters": [
@@ -181,9 +208,7 @@
             "example": "PATH: [author] ;; MESSAGE: \"author\" is required"
           }
         },
-        "required": [
-          "error"
-        ]
+        "required": ["error"]
       },
       "ServerErrorSchema": {
         "type": "object",
@@ -194,9 +219,18 @@
             "example": "Internal server error"
           }
         },
-        "required": [
-          "error"
-        ]
+        "required": ["error"]
+      },
+      "NotFoundErrorSchema": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Item not found"
+          }
+        },
+        "required": ["error"]
       },
       "DraftBookSchema": {
         "type": "object",
@@ -212,10 +246,7 @@
             "example": "Douglas Adams"
           }
         },
-        "required": [
-          "name",
-          "author"
-        ]
+        "required": ["name", "author"]
       },
       "BookSchema": {
         "allOf": [
@@ -241,11 +272,7 @@
             "example": 1616158942428
           }
         },
-        "required": [
-          "_id",
-          "createdAt",
-          "updatedAt"
-        ]
+        "required": ["_id", "createdAt", "updatedAt"]
       }
     }
   }
