@@ -8,7 +8,7 @@ export interface ITimeStampedDocument extends Document {
   updatedAt: number;
 }
 
-const TimeStampPlugin = function (schema: Schema) {
+const TimeStampPlugin = function <T> (schema: Schema<T>) {
   schema.add({ createdAt: { type: Number, index: true } });
   schema.add({ updatedAt: { type: Number, index: true } });
 
