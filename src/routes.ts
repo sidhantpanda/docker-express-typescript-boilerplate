@@ -14,7 +14,7 @@ const router = Router();
 router.post('/book/add', BookController.add);
 router.get('/book/all', BookController.all);
 router.get('/book/:bookId', BookController.get);
-router.delete('/book/remove/:bookId', BookController.remove);
+router.delete('/book/:bookId', BookController.remove);
 router.get('/book/search', BookController.search);
 
 // Dev routes

@@ -149,9 +149,7 @@
             }
           }
         }
-      }
-    },
-    "/book/remove/{bookId}": {
+      },
       "delete": {
         "parameters": [
           {
