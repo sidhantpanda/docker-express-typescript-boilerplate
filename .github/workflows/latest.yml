@@ -23,7 +23,7 @@ jobs:
           CI: true
 
       - name: Publish image to Github Packages
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           username: $GITHUB_ACTOR
           password: ${{ secrets.GITHUB_TOKEN }}
