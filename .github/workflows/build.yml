@@ -4,6 +4,7 @@ on:
     branches-ignore:
       - master
       - staging
+  workflow_dispatch:
 
 jobs:
   build:
