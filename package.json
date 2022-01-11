@@ -37,7 +37,7 @@
     "express": "4.17.2",
     "mongoose": "^5.13.14",
     "swagger-ui-express": "^4.3.0",
-    "winston": "3.3.3",
+    "winston": "3.4.0",
     "winston-transport": "4.4.1"
   },
   "devDependencies": {
