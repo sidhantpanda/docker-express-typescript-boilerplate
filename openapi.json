@@ -107,7 +107,7 @@
         }
       }
     },
-    "/book/{bookId}": {
+    "/book/id/{bookId}": {
       "get": {
         "parameters": [
           {
