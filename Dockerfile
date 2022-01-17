@@ -2,6 +2,7 @@ FROM node:16.13.2 as base
 
 # Add package file
 COPY package*.json ./
+COPY scripts/dev.sh ./scripts/dev.sh
 
 # Install deps
 RUN npm i
