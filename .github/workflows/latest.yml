@@ -27,6 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Publish image to Github Packages
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Publish image to Github Packages
         uses: docker/build-push-action@v1
         with:
