@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,8 +22,10 @@ jobs:
       - run: npm run build --if-present
         env:
           CI: true
-
-      - name: Publish image to Github Packages
+    
+    publish:
+      runs-on: ubuntu-latest
+      name: Publish image to Github Packages
         uses: docker/build-push-action@v1
         with:
           username: $GITHUB_ACTOR
