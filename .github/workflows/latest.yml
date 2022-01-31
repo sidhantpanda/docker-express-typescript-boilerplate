@@ -25,12 +25,14 @@ jobs:
     
   publish:
     runs-on: ubuntu-latest
-    - name: Publish image to Github Packages
-      uses: docker/build-push-action@v1
-      with:
-        username: $GITHUB_ACTOR
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: sidhantpanda/docker-express-typescript-boilerplate/docker-express-typescript-boilerplate
-        tag_with_sha: true
-        tag_with_ref: true
+    name: Publish image to Github Packages
+    steps:
+      - name: Publish image to Github Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: $GITHUB_ACTOR
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: sidhantpanda/docker-express-typescript-boilerplate/docker-express-typescript-boilerplate
+          tag_with_sha: true
+          tag_with_ref: true
