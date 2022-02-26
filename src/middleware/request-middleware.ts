@@ -5,6 +5,11 @@ import Joi from 'joi';
 import BadRequest from '../errors/bad-request';
 import logger from '../logger';
 
+/**
+ * Helper to get message from Joi
+ * @param error Error form Joi
+ * @returns Message from Joi, if available
+ */
 const getMessageFromJoiError = (error: Joi.ValidationError): string | undefined => {
   if (!error.details && error.message) {
     return error.message;
