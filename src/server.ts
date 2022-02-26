@@ -13,7 +13,7 @@ import logger from './logger';
 
 const PORT = process.env.PORT || 3000;
 
-let debugCallback = null;
+let debugCallback;
 if (process.env.NODE_ENV === 'development') {
   debugCallback = (collectionName: string, method: string, query: any, doc: string): void => {
     const message = `${collectionName}.${method}(${util.inspect(query, { colors: true, depth: null })})`;
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const safeMongooseConnection = new SafeMongooseConnection({
-  mongoUrl: process.env.MONGO_URL,
+  mongoUrl: process.env.MONGO_URL ?? '',
   debugCallback,
   onStartConnection: mongoUrl => logger.info(`Connecting to MongoDB at ${mongoUrl}`),
   onConnectionError: (error, mongoUrl) => logger.log({
@@ -47,7 +47,7 @@ const serve = () => app.listen(PORT, () => {
 });
 
 if (process.env.MONGO_URL == null) {
-  logger.error('MONGO_URL not specified in environment');
+  logger.error('MONGO_URL not specified in environment', new Error('MONGO_URL not specified in environment'));
   process.exit(1);
 } else {
   safeMongooseConnection.connect(mongoUrl => {
