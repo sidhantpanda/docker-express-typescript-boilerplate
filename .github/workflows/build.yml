@@ -26,3 +26,23 @@ jobs:
       - run: yarn build
         env:
           CI: true
+  
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['14', '16']
+    name: Use Node.js ${{ matrix.node-version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: yarn test
+        env:
+          CI: true
