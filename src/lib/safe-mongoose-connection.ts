@@ -1,4 +1,4 @@
-import mongoose, { ConnectionOptions } from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 
 /** Callback for establishing or re-stablishing mongo connection */
 interface IOnConnectedCallback {
@@ -7,7 +7,7 @@ interface IOnConnectedCallback {
 
 interface SafeMongooseConnectionOptions {
   mongoUrl: string;
-  mongooseConnectionOptions?: ConnectionOptions;
+  mongooseConnectionOptions?: ConnectOptions;
   retryDelayMs?: number
   debugCallback?: (collectionName: string, method: string, query: any, doc: string) => void;
   onStartConnection?: (mongoUrl: string) => void;
@@ -15,10 +15,9 @@ interface SafeMongooseConnectionOptions {
   onConnectionRetry?: (mongoUrl: string) => void;
 }
 
-const defaultMongooseConnectionOptions: ConnectionOptions = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true
+const defaultMongooseConnectionOptions: ConnectOptions = {
+  autoCreate: true,
+  autoIndex: true
 };
 
 /**
@@ -34,7 +33,7 @@ export default class SafeMongooseConnection {
   private readonly options: SafeMongooseConnectionOptions;
 
   /** Callback when mongo connection is established or re-established */
-  private onConnectedCallback: IOnConnectedCallback;
+  private onConnectedCallback?: IOnConnectedCallback;
 
   /**
    * Internal flag to check if connection established for
@@ -48,9 +47,9 @@ export default class SafeMongooseConnection {
   private retryDelayMs: number = 2000;
 
   /** Mongo connection options to be passed Mongoose */
-  private readonly mongoConnectionOptions: ConnectionOptions = defaultMongooseConnectionOptions;
+  private readonly mongoConnectionOptions: ConnectOptions = defaultMongooseConnectionOptions;
 
-  private connectionTimeout: NodeJS.Timeout;
+  private connectionTimeout?: NodeJS.Timeout;
 
   /**
    * Start mongo connection
@@ -99,12 +98,12 @@ export default class SafeMongooseConnection {
    */
   private onConnected = () => {
     this.isConnectedBefore = true;
-    this.onConnectedCallback(this.options.mongoUrl);
+    this.onConnectedCallback?.(this.options.mongoUrl);
   };
 
   /** Handler called when mongo gets re-connected to the database */
   private onReconnected = () => {
-    this.onConnectedCallback(this.options.mongoUrl);
+    this.onConnectedCallback?.(this.options.mongoUrl);
   };
 
   /** Handler called for mongo connection errors */
@@ -120,7 +119,7 @@ export default class SafeMongooseConnection {
     if (!this.isConnectedBefore && !this.shouldCloseConnection) {
       this.connectionTimeout = setTimeout(() => {
         this.startConnection();
-        clearTimeout(this.connectionTimeout);
+        this.connectionTimeout && clearTimeout(this.connectionTimeout);
       }, this.retryDelayMs);
       if (this.options.onConnectionRetry) {
         this.options.onConnectionRetry(this.options.mongoUrl);
