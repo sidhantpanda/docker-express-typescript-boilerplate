@@ -1,25 +1,28 @@
-import chalk from 'chalk';
 import Transport from 'winston-transport';
-import ConsoleLogger, { STYLES } from './index';
 
-const levelStyleMap: { [key: string]: chalk.Chalk } = {
-  error: STYLES.ERROR,
-  warn: STYLES.WARN,
-  info: STYLES.INFO,
-  verbose: STYLES.VERBOSE,
-  debug: STYLES.DEBUG,
-  silly: STYLES.SILLY
+const getTimeStampString = () => new Date(Date.now()).toISOString();
+
+/**
+ * https://stackoverflow.com/a/41407246
+ * Log level escpace codes
+ */
+const levelStyleMap: { [key: string]: string } = {
+  error: '\x1b[41m%s\x1b[0m',
+  warn: '\x1b[33m%s\x1b[0m',
+  info: '\x1b[94m%s\x1b[0m',
+  verbose: '\x1b[35m%s\x1b[0m',
+  debug: '\x1b[32m%s\x1b[0m',
+  silly: '\x1b[36m%s\x1b[0m'
 };
 
 export default class ConsoleLogTransport extends Transport {
-  private logger = new ConsoleLogger();
 
   log(info: any, callback: { (): void }) {
-    const style = levelStyleMap[(info.level as string)] || STYLES.DEBUG;
     const label = info.consoleLoggerOptions?.label! || (info.level as string).toUpperCase();
-    const messages = [info.message];
-    if (info.error) { messages.push(info.error); }
-    this.logger.log(style, label, ...messages);
+    const finalMessage = `[${getTimeStampString()}] [${label}] ${info.message}`;
+
+    console.log(levelStyleMap[info.level], finalMessage);
+    info.stack && console.log('\t', info.stack);
     callback();
   }
 }
