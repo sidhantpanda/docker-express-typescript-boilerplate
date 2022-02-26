@@ -125,31 +125,30 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 |   |   +-- book
 |   |   |   +-- add.ts
 |   |   |   +-- all.ts
+|   |   |   +-- get.ts
 |   |   |   +-- index.ts
+|   |   |   +-- remove.ts
 |   |   |   +-- search.ts
 |   +-- errors
 |   |   +-- application-error.ts
 |   |   +-- bad-request.ts
 |   +-- lib
-|   |   +-- console-logger
-|   |   |   +-- index.ts
-|   |   |   +-- winston-transport.ts
 |   |   +-- safe-mongo-connection.ts
+|   |   +-- winston-console-transport.ts
 |   +-- middleware
 |   |   +-- request-middleware.ts
 |   +-- models
-|   |   +-- plugins
-|   |   |   +-- timestamp-plugin.ts
 |   |   +-- Book.ts
 |   +-- public
 |   |   +-- index.html
 |   +-- app.ts
-|   +-- mongo-connection.ts
+|   +-- logger.ts
 |   +-- routes.ts
 |   +-- server.ts
 +-- .env.default
 +-- .eslintrc.json
 +-- .gitignore
++-- .gitpod.yml
 +-- docker-compose.dev.yml
 +-- docker-compose.yml
 +-- Dockerfile
@@ -157,8 +156,9 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 +-- LICENSE
 +-- nodemon.json
 +-- openapi.json
-+-- package-lock.json
 +-- package.json
 +-- README.md
++-- renovate.json
 +-- tsconfig.json
++-- yarn.lock
 ```
