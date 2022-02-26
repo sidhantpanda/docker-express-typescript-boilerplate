@@ -1,11 +1,12 @@
 FROM node:16.14.0 as base
 
 # Add package file
-COPY package*.json ./
+COPY package.json ./
+COPY yarn.lock ./
 COPY scripts/dev.sh ./scripts/dev.sh
 
 # Install deps
-RUN npm i
+RUN yarn install
 
 # Copy source
 COPY src ./src
@@ -13,7 +14,7 @@ COPY tsconfig.json ./tsconfig.json
 COPY openapi.json ./openapi.json
 
 # Build dist
-RUN npm run build
+RUN yarn build
 
 # Start production image build
 FROM gcr.io/distroless/nodejs:16
