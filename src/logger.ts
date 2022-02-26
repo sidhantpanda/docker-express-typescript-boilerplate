@@ -3,7 +3,7 @@ import {
   format,
   transports
 } from 'winston';
-import ConsoleLoggerTransport from './lib/console-logger/winston-transport';
+import ConsoleLoggerTransport from './lib/winston-console-transport';
 
 const logTransports = [
   new transports.File({
