@@ -31,7 +31,7 @@ jobs:
     strategy:
       matrix:
         node-version: ['14', '16']
-    name: Use Node.js ${{ matrix.node-version }}
+    name: Test using Node v${{ matrix.node-version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
