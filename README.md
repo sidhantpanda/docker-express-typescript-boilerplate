@@ -44,14 +44,14 @@ $ cd your-app-name
 #### 2. Install dependencies
 
 ```
-$ npm i
+$ yarn install
 ```
 
 ## II. Configuration
 
 #### Update Docker repository for actions
 ```
-$ npm run setup-actions
+$ yarn setup-actions
 ```
 
 ## III. Development
@@ -60,7 +60,7 @@ $ npm run setup-actions
 Starting the dev server also starts MongoDB as a service in a docker container using the compose script at `docker-compose.dev.yml`.
 
 ```
-$ npm run dev
+$ yarn dev
 ```
 Running the above commands results in 
 * 🌏**API Server** running at `http://localhost:3000`
@@ -74,7 +74,7 @@ The mongo container is only only available in dev environment. When you build an
 #### 1. Build and run without Docker
 
 ```
-$ npm run build && npm run start
+$ yarn build && yarn start
 ```
 
 #### 2. Run with docker
