@@ -1,4 +1,4 @@
-name: Publish latest image
+name: Build and Publish
 on:
   push:
     branches: [master]
