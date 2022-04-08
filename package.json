@@ -36,7 +36,7 @@
     "joi": "17.6.0",
     "mongoose": "6.2.9",
     "swagger-ui-express": "4.3.0",
-    "winston": "3.6.0",
+    "winston": "3.7.2",
     "winston-transport": "4.5.0"
   },
   "devDependencies": {
