@@ -1,7 +1,5 @@
 import Transport from 'winston-transport';
 
-const getTimeStampString = () => new Date(Date.now()).toISOString();
-
 /**
  * https://stackoverflow.com/a/41407246
  * Log level escpace codes
@@ -19,7 +17,7 @@ export default class ConsoleLogTransport extends Transport {
 
   log(info: any, callback: { (): void }) {
     const label = info.consoleLoggerOptions?.label! || (info.level as string).toUpperCase();
-    const finalMessage = `[${getTimeStampString()}] [${label}] ${info.message}`;
+    const finalMessage = `[${new Date().toISOString()}] [${label}] ${info.message}`;
 
     console.log(levelStyleMap[info.level], finalMessage);
     info.stack && console.log('\t', info.stack);
