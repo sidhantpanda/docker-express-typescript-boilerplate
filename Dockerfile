@@ -1,4 +1,4 @@
-FROM node:16.15.0 as base
+FROM node:16.15.1 as base
 
 # Add package file
 COPY package.json ./
