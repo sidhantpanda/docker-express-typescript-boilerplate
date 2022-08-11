@@ -54,7 +54,7 @@
     "eslint-plugin-import": "2.26.0",
     "jest": "28.1.2",
     "jest-express": "1.12.0",
-    "nodemon": "2.0.18",
+    "nodemon": "2.0.19",
     "supertest": "6.2.4",
     "ts-jest": "28.0.5",
     "ts-node": "10.8.2",
