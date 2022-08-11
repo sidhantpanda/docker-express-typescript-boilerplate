@@ -17,7 +17,7 @@ COPY openapi.json ./openapi.json
 RUN yarn build
 
 # Start production image build
-FROM gcr.io/distroless/nodejs:16
+FROM gcr.io/distroless/nodejs:18
 
 # Copy node modules and build directory
 COPY --from=base ./node_modules ./node_modules
