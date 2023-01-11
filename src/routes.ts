@@ -5,7 +5,7 @@ import apiSpec from '../openapi.json';
 import * as BookController from './controllers/book';
 
 const swaggerUiOptions = {
-  customCss: '.swagger-ui .topbar { display: none }'
+    customCss: '.swagger-ui .topbar { display: none }',
 };
 
 const router = Router();
@@ -19,8 +19,11 @@ router.delete('/book/id/:bookId', BookController.remove);
 
 // Dev routes
 if (process.env.NODE_ENV === 'development') {
-  router.use('/dev/api-docs', swaggerUi.serve);
-  router.get('/dev/api-docs', swaggerUi.setup(apiSpec, swaggerUiOptions));
+    router.use('/dev/api-docs', swaggerUi.serve as any);
+    router.get(
+        '/dev/api-docs',
+        swaggerUi.setup(apiSpec, swaggerUiOptions) as any
+    );
 }
 
 export default router;
