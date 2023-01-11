@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['16']
+        node-version: ['18']
     name: Build using Node v${{ matrix.node-version }}
     steps:
       - name: Checkout
@@ -30,7 +30,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ['16']
+        node-version: ['18']
     name: Test using Node v${{ matrix.node-version }}
     steps:
       - name: Checkout
