@@ -57,20 +57,19 @@ if (process.env.MONGO_URL == null) {
 }
 
 // Close the Mongoose connection, when receiving SIGINT
-process.on('SIGINT', () => {
+process.on('SIGINT', async () => {
   console.log('\n'); /* eslint-disable-line */
   logger.info('Gracefully shutting down');
   logger.info('Closing the MongoDB connection');
-  safeMongooseConnection.close(err => {
-    if (err) {
-      logger.log({
-        level: 'error',
-        message: 'Error shutting closing mongo connection',
-        error: err
-      });
-    } else {
-      logger.info('Mongo connection closed successfully');
-    }
-    process.exit(0);
-  }, true);
+  try {
+    await safeMongooseConnection.close(true);
+    logger.info('Mongo connection closed successfully');
+  } catch (err) {
+    logger.log({
+      level: 'error',
+      message: 'Error shutting closing mongo connection',
+      error: err
+    });
+  }
+  process.exit(0);
 });
