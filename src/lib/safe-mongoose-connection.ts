@@ -72,12 +72,12 @@ export default class SafeMongooseConnection {
   }
 
   /** Close mongo connection */
-  public close(onClosed: (err: any) => void = () => { }, force: boolean = false) {
+  public async close(force: boolean = false) {
     if (this.connectionTimeout) {
       clearTimeout(this.connectionTimeout);
     }
     this.shouldCloseConnection = true;
-    mongoose.connection.close(force, onClosed);
+    await mongoose.connection.close(force);
   }
 
   /** Start mongo connection */

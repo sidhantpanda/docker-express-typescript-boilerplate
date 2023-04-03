@@ -12,7 +12,7 @@ const remove: RequestHandler = async (req: Request, res) => {
     });
   }
 
-  await book.delete();
+  await book.deleteOne();
   return res.status(204).send();
 };
 
