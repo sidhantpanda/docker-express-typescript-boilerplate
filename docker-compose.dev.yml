@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:6.0.3
+    image: mongo:6.0.5
     container_name: mongo-dev
     restart: always
     networks:

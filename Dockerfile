@@ -1,4 +1,4 @@
-FROM node:18.13.0 as base
+FROM node:18.15.0-alpine as base
 
 # Add package file
 COPY package.json ./
@@ -17,7 +17,7 @@ COPY openapi.json ./openapi.json
 RUN yarn build
 
 # Start production image build
-FROM gcr.io/distroless/nodejs:18
+FROM node:18.15.0-alpine
 
 # Copy node modules and build directory
 COPY --from=base ./node_modules ./node_modules
