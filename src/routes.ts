@@ -12,6 +12,8 @@ const swaggerUiOptions = {
 
 const router = Router();
 
+const SWAGGER_YAML_FILEPATH = path.join(__dirname, '../openapi.yml');
+
 // Book routes
 router.post('/book/add', BookController.add);
 router.get('/book/all', BookController.all);
@@ -21,11 +23,9 @@ router.delete('/book/id/:bookId', BookController.remove);
 
 // Dev routes
 if (process.env.NODE_ENV === 'development') {
+    const swaggerYaml = yaml.load(fs.readFileSync(SWAGGER_YAML_FILEPATH, 'utf8')) as Object;
     router.use('/dev/api-docs', swaggerUi.serve as any);
-    router.get(
-        '/dev/api-docs',
-        swaggerUi.setup(yaml.load(fs.readFileSync(path.join(__dirname, '../openapi.yml'), 'utf8')) as Object, swaggerUiOptions) as any
-    );
+    router.get('/dev/api-docs', swaggerUi.setup(swaggerYaml, swaggerUiOptions) as any);
 }
 
 export default router;
