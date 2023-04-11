@@ -7,11 +7,11 @@
 
 ---
 
-# Express TypeScript Boilerplate
-This repo can be used as a starting point for backend development with Nodejs. It comes bundled with Docker and is CI/CD optimized. The development environment uses `docker-compose` to start dependent services like mongo.
+# Express TypeScript Boilerplate with ChatGPT reviews
+This repo can be used as a starting point for backend development with Nodejs. It comes bundled with Docker and is CI/CD optimized. The development environment uses `docker-compose` to start dependent services like mongo. There is [an action](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/.github/workflows/code-review.yml) to review all PRs with ChatGPT.
 
 A few things to note in the project:
-* **[Github Actions Workflows](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/tree/master/.github/workflows)** - Pre-configured Github Actions to run automated builds and publish image to Github Packages
+* **[Github Actions Workflows](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/tree/master/.github/workflows)** - Pre-configured Github Actions to run automated builds and publish image to Github Packages.
 * **[Dockerfile](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/Dockerfile)** - Dockerfile to generate docker builds.
 * **[docker-compose](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/docker-compose.yml)** - Docker compose script to start service in production mode.
 * **[Containerized Mongo for development](#development)** - Starts a local mongo container with data persistence across runs.
