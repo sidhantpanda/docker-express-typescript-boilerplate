@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
-import apiSpec from '../openapi.json';
+import yaml from 'js-yaml';
+import fs from 'fs';
+import path from 'path';
 
 import * as BookController from './controllers/book';
 
@@ -22,7 +24,7 @@ if (process.env.NODE_ENV === 'development') {
     router.use('/dev/api-docs', swaggerUi.serve as any);
     router.get(
         '/dev/api-docs',
-        swaggerUi.setup(apiSpec, swaggerUiOptions) as any
+        swaggerUi.setup(yaml.load(fs.readFileSync(path.join(__dirname, '../openapi.yml'), 'utf8')) as Object, swaggerUiOptions) as any
     );
 }
 

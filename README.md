@@ -18,7 +18,7 @@ A few things to note in the project:
 * **[Safe Mongooose Connection Helper](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/src/lib/safe-mongoose-connection.ts)** - A helper class to connect with Mongoose reliably.
 * **Joi** - For declarative payload validation
 * **[Middleware for easier async/await](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/src/middleware/request-middleware.ts)** - Catches errors from routes and throws them to express error handler to prevent app crash due to uncaught errors.
-* **[OpenAPI 3.0 Spec](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/openapi.json)** - A starter template to get started with API documentation using OpenAPI 3.0. This API spec is also available when running the development server at `http://localhost:3000/dev/api-docs`
+* **[OpenAPI 3.0 Spec](https://github.com/sidhantpanda/docker-express-typescript-boilerplate/blob/master/openapi.yml)** - A starter template to get started with API documentation using OpenAPI 3.0. This API spec is also available when running the development server at `http://localhost:3000/dev/api-docs`
 * **[.env file for configuration](#environment)** - Change server config like app port, mongo url etc
 * **[Winston Logger](#logging)** - Uses winston as the logger for the application.
 * **ESLINT** - ESLINT is configured for linting.
@@ -155,7 +155,7 @@ The application uses [winston](https://github.com/winstonjs/winston) as the defa
 +-- jest.config.js
 +-- LICENSE
 +-- nodemon.json
-+-- openapi.json
++-- openapi.yml
 +-- package.json
 +-- README.md
 +-- renovate.json
