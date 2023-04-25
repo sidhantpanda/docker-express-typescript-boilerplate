@@ -43,7 +43,7 @@ export const requestMiddleware = (
   }
 
   try {
-    handler(req, res, next);
+    await Promise.resolve(handler(req, res, next));
   } catch (err) {
     if (process.env.NODE_ENV === 'development') {
       logger.log({
