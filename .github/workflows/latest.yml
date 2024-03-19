@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['18']
+        node-version: ['20']
     name: Build using Node v${{ matrix.node-version }}
     steps:
       - name: Checkout
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ['18']
+        node-version: ['20']
     name: Test using Node v${{ matrix.node-version }}
     steps:
       - name: Checkout
