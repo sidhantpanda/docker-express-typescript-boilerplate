@@ -806,10 +806,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/hapi__joi@17.1.14":
-  version "17.1.14"
-  resolved "https://registry.yarnpkg.com/@types/hapi__joi/-/hapi__joi-17.1.14.tgz#937843b8a5d49fbfa8a87cc3527f6575e2140ca8"
-  integrity sha512-elV1VhwXUfA1sw59ij75HWyCH+3cA7xLbaOY9GQ+iQo/S+jSSf22LNZAmsXMdfV8DZwquCZaCT+F43Xf6/txrQ==
+"@types/hapi__joi@17.1.15":
+  version "17.1.15"
+  resolved "https://registry.yarnpkg.com/@types/hapi__joi/-/hapi__joi-17.1.15.tgz#f1daacb67386fb6e86393da811971721d0437e28"
+  integrity sha512-Ehq/YQB0ZqZGObrGngztxtThTiShrG0jlqyUSsNK3cebJSoyYgE/hdZvYt6lH4Wimi28RowDwnr87XseiemqAg==
 
 "@types/http-errors@*":
   version "2.0.4"
