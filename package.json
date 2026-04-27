@@ -48,7 +48,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/node": "20.11.30",
     "@types/supertest": "6.0.2",
-    "@types/swagger-ui-express": "4.1.6",
+    "@types/swagger-ui-express": "4.1.8",
     "@typescript-eslint/eslint-plugin": "7.3.1",
     "@typescript-eslint/parser": "7.3.1",
     "eslint": "8.57.0",
