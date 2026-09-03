@@ -36,7 +36,7 @@
     "joi": "17.12.2",
     "js-yaml": "^4.1.0",
     "mongoose": "8.2.2",
-    "swagger-ui-express": "5.0.0",
+    "swagger-ui-express": "5.0.1",
     "winston": "3.12.0",
     "winston-transport": "4.7.0"
   },
